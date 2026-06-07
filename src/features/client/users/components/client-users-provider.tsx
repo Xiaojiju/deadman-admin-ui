@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import useDialogState from '@/hooks/use-dialog-state'
 import { type ClientUserAdminSummaryVO } from '@/types/api'
+import useDialogState from '@/hooks/use-dialog-state'
 
 type ClientUsersDialogType = 'detail' | 'disable' | 'delete'
 
@@ -20,9 +20,7 @@ export function ClientUsersProvider({ children }: { children: ReactNode }) {
   )
 
   return (
-    <ClientUsersContext
-      value={{ open, setOpen, currentRow, setCurrentRow }}
-    >
+    <ClientUsersContext value={{ open, setOpen, currentRow, setCurrentRow }}>
       {children}
     </ClientUsersContext>
   )

@@ -82,9 +82,20 @@ export function NotificationInbox() {
   const readStatus =
     readFilter === 'all' ? undefined : (Number(readFilter) as 0 | 1)
 
-  useEffect(() => {
+  const handleViewChange = (nextView: ViewMode) => {
+    setView(nextView)
+    setSelectedInbox(null)
+    setSelectedSent(null)
+    setMobileSelected(false)
+    setSearch('')
+    setSentKeyword('')
+    setSentSearch('')
+  }
+
+  const handleReadFilterChange = (nextFilter: ReadFilter) => {
+    setReadFilter(nextFilter)
     setInboxPage(1)
-  }, [readFilter])
+  }
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -93,15 +104,6 @@ export function NotificationInbox() {
     }, 300)
     return () => window.clearTimeout(timer)
   }, [sentKeyword])
-
-  useEffect(() => {
-    setSelectedInbox(null)
-    setSelectedSent(null)
-    setMobileSelected(false)
-    setSearch('')
-    setSentKeyword('')
-    setSentSearch('')
-  }, [view])
 
   const { data: unreadCount = 0 } = useQuery({
     queryKey: [NOTIFICATION_QUERY_KEYS.unreadCount],
@@ -279,7 +281,7 @@ export function NotificationInbox() {
               {canInbox && canSent ? (
                 <Tabs
                   value={view}
-                  onValueChange={(v) => setView(v as ViewMode)}
+                  onValueChange={(v) => handleViewChange(v as ViewMode)}
                   className='mb-3'
                 >
                   <TabsList className='grid w-full grid-cols-2'>
@@ -305,7 +307,7 @@ export function NotificationInbox() {
                 <>
                   <Tabs
                     value={readFilter}
-                    onValueChange={(v) => setReadFilter(v as ReadFilter)}
+                    onValueChange={(v) => handleReadFilterChange(v as ReadFilter)}
                     className='mb-3'
                   >
                     <TabsList className='grid w-full grid-cols-3'>

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { clientUsersApi } from '@/api/client-users'
 import { ApiError } from '@/lib/http/api-error'
-import { ConfirmDialog } from '@/components/confirm-dialog'
 import { Badge } from '@/components/ui/badge'
 import {
   Dialog,
@@ -21,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { ConfirmDialog } from '@/components/confirm-dialog'
 import { useClientUsers } from './client-users-provider'
 
 export function ClientUsersDialogs() {
@@ -140,10 +140,18 @@ export function ClientUsersDialogs() {
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>{t('client:users.detail.accountType')}</TableHead>
-                          <TableHead>{t('client:users.detail.accountIdentifier')}</TableHead>
-                          <TableHead>{t('client:users.detail.oauthProvider')}</TableHead>
-                          <TableHead>{t('client:users.detail.verified')}</TableHead>
+                          <TableHead>
+                            {t('client:users.detail.accountType')}
+                          </TableHead>
+                          <TableHead>
+                            {t('client:users.detail.accountIdentifier')}
+                          </TableHead>
+                          <TableHead>
+                            {t('client:users.detail.oauthProvider')}
+                          </TableHead>
+                          <TableHead>
+                            {t('client:users.detail.verified')}
+                          </TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -155,7 +163,9 @@ export function ClientUsersDialogs() {
                             <TableCell className='font-mono text-xs'>
                               {account.accountIdentifier}
                             </TableCell>
-                            <TableCell>{account.oauthProvider || '-'}</TableCell>
+                            <TableCell>
+                              {account.oauthProvider || '-'}
+                            </TableCell>
                             <TableCell>
                               <Badge variant='outline'>
                                 {account.verified === 1

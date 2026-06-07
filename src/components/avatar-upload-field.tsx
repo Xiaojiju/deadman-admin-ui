@@ -15,7 +15,12 @@ import { Button } from '@/components/ui/button'
 
 const AVATAR_BIZ_TYPE = 'avatar'
 const MAX_AVATAR_SIZE_BYTES = 10 * 1024 * 1024
-const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif']
+const ACCEPTED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/gif',
+]
 
 type AvatarUploadFieldProps = {
   value?: string
@@ -39,18 +44,29 @@ export function AvatarUploadField({
   const { t } = useTranslation(i18nNamespace)
   const tk = (key: string) => t(`${i18nKeyPrefix}.${key}`)
   const inputRef = useRef<HTMLInputElement>(null)
+  const previewUrlRef = useRef<string | null>(null)
   const [pendingFile, setPendingFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (!pendingFile) {
+  const revokePreviewUrl = () => {
+    if (previewUrlRef.current) {
+      URL.revokeObjectURL(previewUrlRef.current)
+      previewUrlRef.current = null
+    }
+  }
+
+  const setPreviewFromFile = (file: File | null) => {
+    revokePreviewUrl()
+    if (!file) {
       setPreviewUrl(null)
       return
     }
-    const objectUrl = URL.createObjectURL(pendingFile)
+    const objectUrl = URL.createObjectURL(file)
+    previewUrlRef.current = objectUrl
     setPreviewUrl(objectUrl)
-    return () => URL.revokeObjectURL(objectUrl)
-  }, [pendingFile])
+  }
+
+  useEffect(() => () => revokePreviewUrl(), [])
 
   const uploadMutation = useMutation({
     mutationFn: (file: File) =>
@@ -58,6 +74,8 @@ export function AvatarUploadField({
     onSuccess: async (metadata) => {
       await onUploaded(metadata.accessUrl)
       setPendingFile(null)
+      setPreviewFromFile(null)
+      if (inputRef.current) inputRef.current.value = ''
       toast.success(tk('toast.success'))
     },
     onError: (error) => {
@@ -84,10 +102,12 @@ export function AvatarUploadField({
     }
 
     setPendingFile(file)
+    setPreviewFromFile(file)
   }
 
   const handleCancelPending = () => {
     setPendingFile(null)
+    setPreviewFromFile(null)
     if (inputRef.current) inputRef.current.value = ''
   }
 

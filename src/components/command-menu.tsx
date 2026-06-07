@@ -22,7 +22,7 @@ export function CommandMenu() {
   const navigate = useNavigate()
   const { setTheme } = useTheme()
   const { open, setOpen } = useSearch()
-  const { t, i18n } = useTranslation(['common', 'layout'])
+  const { t } = useTranslation(['common', 'layout'])
   const user = useAuthStore((s) => s.auth.user)
   const installedComponentCodes = useAuthStore(
     (s) => s.auth.installedComponentCodes
@@ -35,7 +35,7 @@ export function CommandMenu() {
         t,
         installedComponentCodes,
       }),
-    [user, t, i18n.language, installedComponentCodes]
+    [user, t, installedComponentCodes]
   )
 
   const runCommand = React.useCallback(

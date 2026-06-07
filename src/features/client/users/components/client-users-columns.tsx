@@ -1,12 +1,11 @@
 import { useMemo } from 'react'
 import { type ColumnDef } from '@tanstack/react-table'
+import { type ClientUserAdminSummaryVO } from '@/types/api'
 import { Ban, Eye, MoreHorizontal, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { PERMISSIONS } from '@/constants/permissions'
-import { type ClientUserAdminSummaryVO } from '@/types/api'
 import { resolveFileAccessUrl } from '@/lib/files/resolve-file-url'
+import { PERMISSIONS } from '@/constants/permissions'
 import { usePermission } from '@/hooks/use-permission'
-import { PermissionGate } from '@/components/permission'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -18,6 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '@/components/data-table'
+import { PermissionGate } from '@/components/permission'
 import { useClientUsers } from './client-users-provider'
 
 export function useClientUsersColumns(): ColumnDef<ClientUserAdminSummaryVO>[] {

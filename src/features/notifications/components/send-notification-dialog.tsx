@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Check, Loader2, X } from 'lucide-react'
@@ -191,7 +191,10 @@ export function SendNotificationDialog({
     },
   })
 
-  const targetType = form.watch('targetType')
+  const targetType = useWatch({
+    control: form.control,
+    name: 'targetType',
+  })
 
   useEffect(() => {
     if (!open) {
@@ -264,7 +267,11 @@ export function SendNotificationDialog({
     })
   }
 
-  const selectedUserIds = form.watch('userIds') ?? []
+  const selectedUserIds = useWatch({
+    control: form.control,
+    name: 'userIds',
+    defaultValue: [],
+  }) ?? []
 
   const toggleUser = (user: UserAdminSummaryVO) => {
     const current = form.getValues('userIds') ?? []

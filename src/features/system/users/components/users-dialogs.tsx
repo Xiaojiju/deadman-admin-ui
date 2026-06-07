@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { rolesApi } from '@/api/system'
 import { usersApi } from '@/api/users'
+import { type RoleSummaryVO } from '@/types/api'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -27,10 +28,10 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { PasswordInput } from '@/components/password-input'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { AvatarUploadField } from '@/components/avatar-upload-field'
+import { PasswordInput } from '@/components/password-input'
 import {
   Select,
   SelectContent,
@@ -80,6 +81,56 @@ function createResetPasswordSchema(
       message: passwordMismatchMessage,
       path: ['confirmPassword'],
     })
+}
+
+type AssignRolesDialogContentProps = {
+  roles: RoleSummaryVO[]
+  initialRoleIds: string[]
+  isPending: boolean
+  saveLabel: string
+  onSave: (roleIds: string[]) => void
+}
+
+function AssignRolesDialogContent({
+  roles,
+  initialRoleIds,
+  isPending,
+  saveLabel,
+  onSave,
+}: AssignRolesDialogContentProps) {
+  const [selectedRoleIds, setSelectedRoleIds] = useState(initialRoleIds)
+
+  return (
+    <>
+      <ScrollArea className='h-72 rounded-md border p-3'>
+        <div className='space-y-2'>
+          {roles.map((role) => (
+            <label key={role.id} className='flex items-center gap-2 text-sm'>
+              <Checkbox
+                checked={selectedRoleIds.includes(role.id)}
+                onCheckedChange={(checked) => {
+                  setSelectedRoleIds((prev) =>
+                    checked === true
+                      ? [...prev, role.id]
+                      : prev.filter((id) => id !== role.id)
+                  )
+                }}
+              />
+              <span>{role.roleName}</span>
+              <span className='font-mono text-xs text-muted-foreground'>
+                {role.roleCode}
+              </span>
+            </label>
+          ))}
+        </div>
+      </ScrollArea>
+      <DialogFooter>
+        <Button onClick={() => onSave(selectedRoleIds)} disabled={isPending}>
+          {saveLabel}
+        </Button>
+      </DialogFooter>
+    </>
+  )
 }
 
 export function UsersDialogs() {
@@ -142,25 +193,12 @@ export function UsersDialogs() {
       : undefined,
   })
 
-  const [selectedRoleIds, setSelectedRoleIds] = useState<string[]>([])
-
-  useEffect(() => {
-    if (open === 'resetPassword') {
-      resetPasswordForm.reset({
-        newPassword: '',
-        confirmPassword: '',
-      })
-    }
-  }, [open, resetPasswordForm])
-
-  useEffect(() => {
-    if (open === 'roles' && userDetail && roles.length > 0) {
-      const ids = roles
-        .filter((role) => userDetail.roleCodes.includes(role.roleCode))
-        .map((role) => role.id)
-      setSelectedRoleIds(ids)
-    }
-  }, [open, userDetail, roles])
+  const initialRoleIds = useMemo(() => {
+    if (!userDetail) return []
+    return roles
+      .filter((role) => userDetail.roleCodes.includes(role.roleCode))
+      .map((role) => role.id)
+  }, [userDetail, roles])
 
   const invalidate = () =>
     queryClient.invalidateQueries({ queryKey: ['users'] })
@@ -249,8 +287,8 @@ export function UsersDialogs() {
   })
 
   const assignRolesMutation = useMutation({
-    mutationFn: () =>
-      usersApi.assignRoles(currentRow!.id, { roleIds: selectedRoleIds }),
+    mutationFn: (roleIds: string[]) =>
+      usersApi.assignRoles(currentRow!.id, { roleIds }),
     onSuccess: () => {
       invalidate()
       setOpen(null)
@@ -265,18 +303,21 @@ export function UsersDialogs() {
       ),
   })
 
-  function toggleRole(roleId: string, checked: boolean) {
-    setSelectedRoleIds((prev) =>
-      checked ? [...prev, roleId] : prev.filter((id) => id !== roleId)
-    )
-  }
-
-  const createNickname = createForm.watch('nickname')
-  const createUsername = createForm.watch('username')
+  const createNickname = useWatch({
+    control: createForm.control,
+    name: 'nickname',
+  })
+  const createUsername = useWatch({
+    control: createForm.control,
+    name: 'username',
+  })
   const createDisplayName =
     createNickname?.trim() || createUsername?.trim() || '?'
 
-  const editNickname = editForm.watch('nickname')
+  const editNickname = useWatch({
+    control: editForm.control,
+    name: 'nickname',
+  })
   const editDisplayName =
     editNickname?.trim() ||
     currentRow?.nickname ||
@@ -521,35 +562,16 @@ export function UsersDialogs() {
               })}
             </DialogDescription>
           </DialogHeader>
-          <ScrollArea className='h-72 rounded-md border p-3'>
-            <div className='space-y-2'>
-              {roles.map((role) => (
-                <label
-                  key={role.id}
-                  className='flex items-center gap-2 text-sm'
-                >
-                  <Checkbox
-                    checked={selectedRoleIds.includes(role.id)}
-                    onCheckedChange={(checked) =>
-                      toggleRole(role.id, checked === true)
-                    }
-                  />
-                  <span>{role.roleName}</span>
-                  <span className='font-mono text-xs text-muted-foreground'>
-                    {role.roleCode}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </ScrollArea>
-          <DialogFooter>
-            <Button
-              onClick={() => assignRolesMutation.mutate()}
-              disabled={assignRolesMutation.isPending}
-            >
-              {t('system:users.dialogs.saveRoles')}
-            </Button>
-          </DialogFooter>
+          {userDetail ? (
+            <AssignRolesDialogContent
+              key={userDetail.id}
+              roles={roles}
+              initialRoleIds={initialRoleIds}
+              isPending={assignRolesMutation.isPending}
+              saveLabel={t('system:users.dialogs.saveRoles')}
+              onSave={(roleIds) => assignRolesMutation.mutate(roleIds)}
+            />
+          ) : null}
         </DialogContent>
       </Dialog>
 
@@ -568,7 +590,7 @@ export function UsersDialogs() {
               })}
             </DialogDescription>
           </DialogHeader>
-          <Form {...resetPasswordForm}>
+          <Form {...resetPasswordForm} key={currentRow?.id ?? 'reset-password'}>
             <form
               className='space-y-4'
               onSubmit={resetPasswordForm.handleSubmit((values) =>

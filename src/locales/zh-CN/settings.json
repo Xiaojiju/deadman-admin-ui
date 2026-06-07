@@ -75,7 +75,6 @@
     "accountStatusActive": "正常",
     "accountStatusInactive": "已禁用",
     "noAccounts": "暂无已绑定的登录方式",
-    "avatarPlaceholder": "请输入头像图片链接",
     "save": "保存修改",
     "saving": "保存中…",
     "createdAt": "创建时间",

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { z } from 'zod'
 import { format } from 'date-fns'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { type UserAccountBindingVO } from '@/types/api'
@@ -178,8 +178,14 @@ export function AccountForm() {
     },
   })
 
-  const watchedNickname = form.watch('nickname')
-  const watchedAvatar = form.watch('avatar')
+  const watchedNickname = useWatch({
+    control: form.control,
+    name: 'nickname',
+  })
+  const watchedAvatar = useWatch({
+    control: form.control,
+    name: 'avatar',
+  })
 
   function onSubmit(values: AccountEditValues) {
     updateMutation.mutate(values)

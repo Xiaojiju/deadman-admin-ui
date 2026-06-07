@@ -55,7 +55,7 @@ export function PositionsTable() {
   }, [departmentFilter])
 
   const { data: rawData = [], isLoading } = useQuery({
-    queryKey: ['positions', listQuery?.departmentId ?? 'all'],
+    queryKey: ['positions', listQuery],
     queryFn: () => positionsApi.list(listQuery),
   })
 

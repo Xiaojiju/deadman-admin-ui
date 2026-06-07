@@ -1,0 +1,53 @@
+---
+description: shadcn-admin 项目结构与开发约定
+alwaysApply: true
+---
+
+# shadcn-admin 项目约定
+
+基于 Vite + React 19 + TypeScript 的管理后台，UI 使用 shadcn/ui（new-york 风格）+ Tailwind CSS v4。
+
+## 目录与职责
+
+| 路径 | 用途 |
+|------|------|
+| `src/routes/` | TanStack Router 文件路由；薄层：校验 search、导出 `Route`、挂载 feature 页面 |
+| `src/features/<name>/` | 业务页面：`index.tsx` 为页面入口，`components/`、`data/`（schema、mock） |
+| `src/components/ui/` | shadcn 基础组件 |
+| `src/components/layout/` | 布局（Header、Main、Sidebar 等） |
+| `src/components/data-table/` | 可复用表格工具 |
+| `src/hooks/` | 通用 hooks |
+| `src/lib/` | 工具函数（如 `cn`） |
+| `src/context/` | 全局 Provider（theme、font、direction 等） |
+| `src/stores/` | Zustand 状态 |
+
+路径别名：`@/*` → `src/*`（见 `components.json` aliases）。
+
+## 新增功能页
+
+1. 在 `src/features/<feature>/` 实现页面与组件。
+2. 在 `src/routes/` 下用 `createFileRoute` 注册路由；列表页用 Zod `validateSearch` 同步 URL 筛选（参考 `src/routes/_authenticated/tasks/index.tsx`）。
+3. 复杂对话框状态用 `useDialogState` + feature 级 `*Provider` / `use*` hook（参考 `tasks-provider.tsx`）。
+4. 表格列与 bulk 操作放在 feature 的 `components/`，复用 `@/components/data-table`。
+
+## UI 与 shadcn
+
+- 优先使用 `@/components/ui` 与 `cn()`；图标默认 **lucide-react**，品牌图标用 `src/assets/brand-icons/`。
+- 通过 `npx shadcn@latest add` 添加**未定制**组件；以下文件含 RTL/定制修改，CLI 覆盖前需手动合并：
+  - Modified: `scroll-area`, `sonner`, `separator`
+  - RTL: `alert-dialog`, `calendar`, `command`, `dialog`, `dropdown-menu`, `select`, `table`, `sheet`, `sidebar`, `switch`
+- 布局类名注意 RTL（如 `me-auto` 而非仅 `ml-auto`）。
+
+## 代码风格
+
+- 函数组件 + TypeScript strict；表单用 **react-hook-form** + **zod**。
+- 数据获取用 **@tanstack/react-query**；表格用 **@tanstack/react-table**。
+- 遵循现有 ESLint / Prettier；提交前建议：`pnpm lint && pnpm format && pnpm build`。
+- 包管理器：**pnpm**；测试：**vitest**（`*.test.tsx` 与 feature 同目录或 `src/test-utils/`）。
+- 保持改动范围最小；不添加无关抽象或占位实现；除非明确要求，不擅自新增测试或文档文件。
+
+## 禁止 / 注意
+
+- 不要修改 `src/routeTree.gen.ts`（由 router 插件生成）。
+- 新 feature 不要绕过 `features/` 直接在 `routes/` 写大段 UI。
+- 未经讨论的较大新功能需先对齐需求（见 CONTRIBUTING）。

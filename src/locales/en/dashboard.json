@@ -1,0 +1,56 @@
+{
+  "title": "Dashboard",
+  "download": "Download",
+  "tabs": {
+    "overview": "Overview",
+    "analytics": "Analytics",
+    "reports": "Reports",
+    "notifications": "Notifications"
+  },
+  "topNav": {
+    "overview": "Overview",
+    "customers": "Customers",
+    "products": "Products",
+    "settings": "Settings"
+  },
+  "cards": {
+    "totalRevenue": "Total Revenue",
+    "subscriptions": "Subscriptions",
+    "sales": "Sales",
+    "activeNow": "Active Now",
+    "revenueChange": "+20.1% from last month",
+    "subscriptionsChange": "+180.1% from last month",
+    "salesChange": "+19% from last month",
+    "activeChange": "+201 since last hour"
+  },
+  "analytics": {
+    "title": "Traffic Overview",
+    "desc": "Weekly clicks and unique visitors",
+    "totalClicks": "Total Clicks",
+    "uniqueVisitors": "Unique Visitors",
+    "bounceRate": "Bounce Rate",
+    "avgSession": "Avg. Session",
+    "vsLastWeekUp": "+{{value}} vs last week",
+    "vsLastWeekDown": "{{value}} vs last week",
+    "referrers": "Referrers",
+    "referrersDesc": "Top sources driving traffic",
+    "devices": "Devices",
+    "devicesDesc": "How users access your app",
+    "referrerNames": {
+      "direct": "Direct",
+      "productHunt": "Product Hunt",
+      "twitter": "Twitter",
+      "blog": "Blog"
+    },
+    "deviceNames": {
+      "desktop": "Desktop",
+      "mobile": "Mobile",
+      "tablet": "Tablet"
+    }
+  },
+  "recentSales": {
+    "title": "Recent Sales",
+    "desc": "You made 265 sales this month.",
+    "avatarAlt": "Avatar"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "职位",
+  "desc": "管理职位，可归属部门或为全局职位。",
+  "create": "新建职位",
+  "filter": "搜索职位名称或编码…",
+  "departmentFilter": "部门",
+  "departmentAll": "全部职位",
+  "departmentGlobal": "仅全局",
+  "globalDepartment": "全局",
+  "noDepartment": "全局（无部门）",
+  "noPositions": "暂无职位。",
+  "columns": {
+    "positionCode": "职位编码",
+    "positionName": "职位名称",
+    "department": "所属部门",
+    "sortOrder": "排序",
+    "status": "状态",
+    "active": "启用",
+    "inactive": "禁用"
+  },
+  "actions": {
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "dialogs": {
+    "createTitle": "新建职位",
+    "createDesc": "创建新职位，职位编码全局唯一。",
+    "department": "所属部门",
+    "positionCode": "职位编码",
+    "positionCodePlaceholder": "MANAGER",
+    "positionName": "职位名称",
+    "positionNamePlaceholder": "经理",
+    "sortOrder": "排序号",
+    "editTitle": "编辑职位",
+    "editDesc": "更新职位 {{name}}。",
+    "deleteTitle": "删除职位",
+    "deleteDesc": "确定删除职位 {{name}}？存在关联用户时不允许删除。"
+  },
+  "validation": {
+    "positionCodeInvalid": "职位编码格式无效（须大写字母开头）。"
+  },
+  "toast": {
+    "created": "职位已创建。",
+    "updated": "职位已更新。",
+    "deleted": "职位已删除。",
+    "createFailed": "创建职位失败",
+    "updateFailed": "更新职位失败",
+    "deleteFailed": "删除职位失败"
+  }
+}

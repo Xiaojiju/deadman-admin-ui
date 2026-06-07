@@ -1,0 +1,160 @@
+{
+  "title": "设置",
+  "description": "管理账户设置和邮件偏好。",
+  "nav": {
+    "profile": "个人资料",
+    "account": "账户",
+    "password": "密码",
+    "appearance": "外观",
+    "notifications": "通知",
+    "display": "显示"
+  },
+  "profile": {
+    "title": "个人资料",
+    "desc": "这是其他用户在网站上看到的信息。",
+    "userCode": "用户编码",
+    "userCodeDesc": "系统中的唯一标识符。",
+    "nickname": "昵称",
+    "nicknameDesc": "来自账户资料的显示名称。",
+    "email": "邮箱",
+    "emailPlaceholder": "选择要显示的已验证邮箱",
+    "emailDesc": "占位字段 — 尚未与 API 同步。可在邮件设置中管理。",
+    "bio": "简介",
+    "bioPlaceholder": "介绍一下你自己",
+    "bioDesc": "占位字段 — 尚未与 API 同步。",
+    "urls": "链接",
+    "urlsDesc": "占位字段 — 尚未与 API 同步。",
+    "updateProfile": "更新资料",
+    "loading": "加载资料中…",
+    "validation": {
+      "nicknameRequired": "昵称为必填项。"
+    }
+  },
+  "account": {
+    "title": "账户",
+    "desc": "查看您当前登录账户的基本信息。",
+    "userCode": "用户编码",
+    "userCodeDesc": "您在系统中的账户编号，用于识别您的身份。",
+    "nickname": "昵称",
+    "nicknameDesc": "在系统中显示的名称。",
+    "avatar": "头像",
+    "avatarDesc": "您的个人头像，会显示在页面右上角等位置。",
+    "avatarUpload": {
+      "select": "选择图片",
+      "confirm": "确认上传",
+      "cancel": "取消",
+      "pending": "待确认",
+      "desc": "支持 JPG、PNG、WebP、GIF，最大 10MB。选择后可预览，确认后上传并保存。",
+      "previewHint": "预览中，确认后将上传并更新头像。",
+      "toast": {
+        "success": "头像已更新。",
+        "failed": "头像上传失败，请稍后重试。",
+        "invalidType": "仅支持 JPG、PNG、WebP、GIF 格式。",
+        "tooLarge": "图片大小不能超过 10MB。"
+      }
+    },
+    "noAvatar": "尚未设置头像",
+    "roles": "角色",
+    "noRoles": "暂无角色",
+    "rolesDesc": "您在本系统中的身份，决定可以使用哪些功能。",
+    "status": "状态",
+    "statusActive": "正常",
+    "statusInactive": "禁用",
+    "username": "登录用户名",
+    "usernameDesc": "您用于登录系统的主账号名称。",
+    "accounts": "已绑定账号",
+    "accountsDesc": "与您的账户关联的登录方式，例如用户名或第三方登录。",
+    "accountTypeLabel": "类型",
+    "accountIdentifier": "账号",
+    "oauthProvider": "登录平台",
+    "accountType": {
+      "USERNAME": "用户名",
+      "PHONE": "手机号",
+      "OAUTH": "第三方登录"
+    },
+    "accountStatusActive": "正常",
+    "accountStatusInactive": "已禁用",
+    "noAccounts": "暂无已绑定的登录方式",
+    "avatarPlaceholder": "请输入头像图片链接",
+    "save": "保存修改",
+    "saving": "保存中…",
+    "createdAt": "创建时间",
+    "loading": "加载账户中…",
+    "loadFailed": "无法加载账户信息，请稍后重试。",
+    "validation": {
+      "nicknameRequired": "请填写昵称。"
+    },
+    "toast": {
+      "updated": "资料已保存。",
+      "updateFailed": "保存失败，请稍后重试。"
+    }
+  },
+  "password": {
+    "title": "密码",
+    "desc": "在此修改密码。保存后，下次登录需使用新密码。",
+    "current": "当前密码",
+    "currentPlaceholder": "输入当前密码",
+    "new": "新密码",
+    "newPlaceholder": "输入新密码",
+    "newDesc": "至少 8 个字符。",
+    "confirm": "确认新密码",
+    "confirmPlaceholder": "再次输入新密码",
+    "update": "更新密码",
+    "success": "密码更新成功。",
+    "failed": "修改密码失败",
+    "validation": {
+      "currentRequired": "请输入当前密码。",
+      "newMin": "新密码至少 8 个字符。",
+      "newMax": "新密码不能超过 128 个字符。",
+      "confirmRequired": "请确认新密码。",
+      "mismatch": "两次输入的密码不一致。"
+    }
+  },
+  "appearance": {
+    "title": "外观",
+    "desc": "自定义应用外观，自动切换日间/夜间主题。",
+    "form": {
+      "font": "字体",
+      "fontDesc": "设置控制台中使用的字体。",
+      "theme": "主题",
+      "themeDesc": "选择控制台的主题。",
+      "update": "更新偏好"
+    }
+  },
+  "notifications": {
+    "title": "通知",
+    "desc": "配置 Toast 通知在界面中的显示位置。",
+    "positionTitle": "显示位置",
+    "positionDesc": "选择通知弹出时出现在屏幕的哪个位置，点击选项可预览效果。",
+    "previewToast": "通知将显示在此位置",
+    "positions": {
+      "topLeft": "左上",
+      "topCenter": "顶部居中",
+      "topRight": "右上",
+      "bottomLeft": "左下",
+      "bottomCenter": "底部居中",
+      "bottomRight": "右下"
+    }
+  },
+  "display": {
+    "title": "显示",
+    "desc": "开关控制应用中显示的内容。",
+    "form": {
+      "sidebar": "侧边栏",
+      "sidebarDesc": "选择要在侧边栏中显示的项目。",
+      "items": {
+        "recents": "最近",
+        "home": "主页",
+        "applications": "应用",
+        "desktop": "桌面",
+        "downloads": "下载",
+        "documents": "文档"
+      },
+      "update": "更新显示",
+      "validation": {
+        "selectOne": "至少选择一项。"
+      }
+    }
+  },
+  "navPlaceholder": "选择设置项"
+}

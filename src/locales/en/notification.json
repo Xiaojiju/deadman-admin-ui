@@ -1,0 +1,73 @@
+{
+  "page": {
+    "title": "Notifications",
+    "inboxTab": "Inbox",
+    "sentTab": "Sent"
+  },
+  "inbox": {
+    "title": "Inbox",
+    "desc": "View system notifications and messages.",
+    "searchPlaceholder": "Search title or content…",
+    "filterAll": "All",
+    "filterUnread": "Unread",
+    "filterRead": "Read",
+    "unreadCount": "{{count}} unread",
+    "markAllRead": "Mark all read",
+    "markRead": "Mark as read",
+    "read": "Read",
+    "unread": "Unread",
+    "receivedAt": "Received",
+    "readAt": "Read at",
+    "emptyList": "No notifications",
+    "emptyDetailTitle": "Select a notification",
+    "emptyDetailDesc": "Choose a notification from the list to view details.",
+    "toast": {
+      "markedRead": "Marked as read",
+      "markedAllRead": "All marked as read",
+      "markReadFailed": "Failed to mark as read",
+      "markAllReadFailed": "Failed to mark all as read",
+      "view": "View"
+    }
+  },
+  "sent": {
+    "searchPlaceholder": "Search by title…",
+    "emptyList": "No sent notifications",
+    "targetType": "Target",
+    "recipientCount": "{{count}} recipients",
+    "recipientCountLabel": "Recipients",
+    "sentAt": "Sent at"
+  },
+  "send": {
+    "title": "Send notification",
+    "desc": "Send a notification to users, departments, positions, or everyone.",
+    "compose": "Compose",
+    "submit": "Send",
+    "searchUsers": "Search users…",
+    "targetAllHint": "Will be delivered to all active users in the system.",
+    "fields": {
+      "title": "Title",
+      "content": "Content",
+      "targetType": "Target audience",
+      "users": "Recipients",
+      "departments": "Departments",
+      "positions": "Positions"
+    },
+    "targetTypes": {
+      "user": "Specific users",
+      "department": "By department",
+      "position": "By position",
+      "all": "All users"
+    },
+    "validation": {
+      "titleRequired": "Title is required.",
+      "contentRequired": "Content is required.",
+      "usersRequired": "Select at least one user.",
+      "departmentsRequired": "Select at least one department.",
+      "positionsRequired": "Select at least one position."
+    },
+    "toast": {
+      "success": "Sent successfully to {{count}} recipients",
+      "failed": "Failed to send"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "users": {
+    "title": "用户端用户",
+    "desc": "管理用户端注册用户，支持查询、禁用与注销。",
+    "filter": "搜索用户编码、昵称、用户名或手机号…",
+    "statusFilter": "状态",
+    "statusAll": "全部状态",
+    "noUsers": "暂无用户端用户",
+    "columns": {
+      "user": "用户",
+      "userCode": "用户编码",
+      "phone": "手机号",
+      "status": "状态",
+      "active": "正常",
+      "inactive": "禁用",
+      "createTime": "注册时间"
+    },
+    "actions": {
+      "view": "查看详情",
+      "disable": "禁用",
+      "delete": "注销"
+    },
+    "detail": {
+      "title": "用户详情",
+      "username": "用户名",
+      "updateTime": "更新时间",
+      "accounts": "绑定账号",
+      "noAccounts": "暂无绑定账号",
+      "accountType": "账号类型",
+      "accountIdentifier": "账号标识",
+      "oauthProvider": "OAuth 提供方",
+      "verified": "已验证",
+      "verifiedYes": "是",
+      "verifiedNo": "否"
+    },
+    "disable": {
+      "title": "禁用用户",
+      "desc": "确定要禁用用户「{{name}}」吗？禁用后将使其登录会话失效。"
+    },
+    "delete": {
+      "title": "注销用户",
+      "desc": "确定要注销用户「{{name}}」吗？此操作将逻辑删除用户并清理相关账号与会话，不可恢复。"
+    },
+    "toast": {
+      "disabled": "用户已禁用",
+      "disableFailed": "禁用失败",
+      "deleted": "用户已注销",
+      "deleteFailed": "注销失败"
+    }
+  }
+}

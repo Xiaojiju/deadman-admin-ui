@@ -1,0 +1,49 @@
+{
+  "title": "部门",
+  "desc": "管理组织部门，支持树形结构。",
+  "create": "新建部门",
+  "createChild": "添加子部门",
+  "filter": "搜索部门名称或编码…",
+  "noDepartments": "暂无部门。",
+  "rootParent": "根部门（无上级）",
+  "columns": {
+    "deptCode": "部门编码",
+    "deptName": "部门名称",
+    "sortOrder": "排序",
+    "status": "状态",
+    "active": "启用",
+    "inactive": "禁用"
+  },
+  "actions": {
+    "addChild": "添加子部门",
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "dialogs": {
+    "createTitle": "新建部门",
+    "createDesc": "创建新部门，部门编码全局唯一。",
+    "createChildTitle": "添加子部门",
+    "createChildDesc": "在 {{name}} 下添加子部门。",
+    "parent": "上级部门",
+    "deptCode": "部门编码",
+    "deptCodePlaceholder": "HQ",
+    "deptName": "部门名称",
+    "deptNamePlaceholder": "总部",
+    "sortOrder": "排序号",
+    "editTitle": "编辑部门",
+    "editDesc": "更新部门 {{name}}。",
+    "deleteTitle": "删除部门",
+    "deleteDesc": "确定删除部门 {{name}}？存在下级部门或关联用户时不允许删除。"
+  },
+  "validation": {
+    "deptCodeInvalid": "部门编码格式无效（须大写字母开头）。"
+  },
+  "toast": {
+    "created": "部门已创建。",
+    "updated": "部门已更新。",
+    "deleted": "部门已删除。",
+    "createFailed": "创建部门失败",
+    "updateFailed": "更新部门失败",
+    "deleteFailed": "删除部门失败"
+  }
+}

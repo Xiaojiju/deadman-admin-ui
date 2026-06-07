@@ -1,0 +1,50 @@
+{
+  "title": "Positions",
+  "desc": "Manage job positions, optionally scoped to a department or global.",
+  "create": "Create Position",
+  "filter": "Search by name or code…",
+  "departmentFilter": "Department",
+  "departmentAll": "All positions",
+  "departmentGlobal": "Global only",
+  "globalDepartment": "Global",
+  "noDepartment": "Global (no department)",
+  "noPositions": "No positions found.",
+  "columns": {
+    "positionCode": "Position Code",
+    "positionName": "Position Name",
+    "department": "Department",
+    "sortOrder": "Sort",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Disabled"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "dialogs": {
+    "createTitle": "Create Position",
+    "createDesc": "Add a new position. positionCode must be globally unique.",
+    "department": "Department",
+    "positionCode": "Position Code",
+    "positionCodePlaceholder": "MANAGER",
+    "positionName": "Position Name",
+    "positionNamePlaceholder": "Manager",
+    "sortOrder": "Sort Order",
+    "editTitle": "Edit Position",
+    "editDesc": "Update position {{name}}.",
+    "deleteTitle": "Delete Position",
+    "deleteDesc": "Delete position {{name}}? Cannot delete if linked users exist."
+  },
+  "validation": {
+    "positionCodeInvalid": "Invalid position code format (uppercase letter first)."
+  },
+  "toast": {
+    "created": "Position created.",
+    "updated": "Position updated.",
+    "deleted": "Position deleted.",
+    "createFailed": "Failed to create position",
+    "updateFailed": "Failed to update position",
+    "deleteFailed": "Failed to delete position"
+  }
+}

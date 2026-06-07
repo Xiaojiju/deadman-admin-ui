@@ -1,0 +1,51 @@
+{
+  "users": {
+    "title": "Client Users",
+    "desc": "Manage end-user accounts: search, disable, and delete.",
+    "filter": "Search by user code, nickname, username, or phone…",
+    "statusFilter": "Status",
+    "statusAll": "All statuses",
+    "noUsers": "No client users found",
+    "columns": {
+      "user": "User",
+      "userCode": "User code",
+      "phone": "Phone",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Disabled",
+      "createTime": "Registered"
+    },
+    "actions": {
+      "view": "View details",
+      "disable": "Disable",
+      "delete": "Delete"
+    },
+    "detail": {
+      "title": "User details",
+      "username": "Username",
+      "updateTime": "Updated",
+      "accounts": "Linked accounts",
+      "noAccounts": "No linked accounts",
+      "accountType": "Type",
+      "accountIdentifier": "Identifier",
+      "oauthProvider": "OAuth provider",
+      "verified": "Verified",
+      "verifiedYes": "Yes",
+      "verifiedNo": "No"
+    },
+    "disable": {
+      "title": "Disable user",
+      "desc": "Disable \"{{name}}\"? Their active sessions will be revoked."
+    },
+    "delete": {
+      "title": "Delete user",
+      "desc": "Delete \"{{name}}\"? This logically removes the user and clears accounts and sessions. This cannot be undone."
+    },
+    "toast": {
+      "disabled": "User disabled",
+      "disableFailed": "Failed to disable user",
+      "deleted": "User deleted",
+      "deleteFailed": "Failed to delete user"
+    }
+  }
+}

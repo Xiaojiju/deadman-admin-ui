@@ -1,0 +1,95 @@
+{
+  "sidebar": {
+    "general": "通用",
+    "organization": "组织",
+    "system": "系统",
+    "other": "其他",
+    "users": "用户",
+    "roles": "角色",
+    "permissions": "权限",
+    "departments": "部门",
+    "positions": "职位",
+    "settings": "设置",
+    "profile": "个人资料",
+    "account": "账户",
+    "password": "密码",
+    "appearance": "外观",
+    "notifications": "通知",
+    "display": "显示",
+    "helpCenter": "帮助中心",
+    "inbox": "站内信",
+    "client": "用户端",
+    "clientUsers": "用户管理"
+  },
+  "teams": {
+    "title": "团队",
+    "addTeam": "添加团队",
+    "shadcnAdmin": "Shadcn Admin",
+    "vitePlan": "Vite + ShadcnUI",
+    "acmeInc": "Acme Inc",
+    "enterprise": "企业版",
+    "acmeCorp": "Acme Corp.",
+    "startup": "创业版"
+  },
+  "navUser": {
+    "upgradeToPro": "升级到 Pro",
+    "billing": "账单"
+  },
+  "profileDropdown": {
+    "profile": "个人资料",
+    "billing": "账单",
+    "settings": "设置",
+    "newTeam": "新建团队"
+  },
+  "config": {
+    "title": "主题设置",
+    "description": "调整外观和布局以满足您的偏好。",
+    "openAria": "打开主题设置",
+    "resetAria": "将所有设置重置为默认值",
+    "theme": "主题",
+    "sidebar": "侧边栏",
+    "layout": "布局",
+    "direction": "文字方向",
+    "language": "语言",
+    "languageDesc": "选择控制台界面语言。",
+    "colorTheme": "配色",
+    "colorThemeDesc": "选择界面主色调配色方案。",
+    "colorThemeResetAria": "将配色重置为默认",
+    "colorThemes": {
+      "neutral": "中性",
+      "blue": "蓝色",
+      "green": "绿色",
+      "violet": "紫色",
+      "rose": "玫瑰",
+      "orange": "橙色",
+      "yellow": "黄色",
+      "red": "红色"
+    },
+    "themeResetAria": "将主题偏好重置为默认",
+    "themeSelectAria": "选择主题偏好",
+    "themeDesc": "在跟随系统、浅色模式或深色模式之间选择",
+    "sidebarResetAria": "将侧边栏样式重置为默认",
+    "sidebarSelectAria": "选择侧边栏样式",
+    "sidebarDesc": "在内嵌、浮动或标准侧边栏布局之间选择",
+    "sidebarVariants": {
+      "inset": "内嵌",
+      "floating": "浮动",
+      "sidebar": "侧边栏"
+    },
+    "layoutResetAria": "将布局选项重置为默认",
+    "layoutSelectAria": "选择布局样式",
+    "layoutDesc": "在默认展开、紧凑图标或全屏布局模式之间选择",
+    "layoutVariants": {
+      "default": "默认",
+      "compact": "紧凑",
+      "fullLayout": "全屏"
+    },
+    "directionResetAria": "将文字方向重置为默认",
+    "directionSelectAria": "选择站点文字方向",
+    "directionDesc": "在从左到右或从右到左的站点方向之间选择",
+    "directionLtr": "从左到右",
+    "directionRtl": "从右到左",
+    "selectOption": "选择 {{label}}",
+    "optionPreview": "{{label}} 选项预览"
+  }
+}

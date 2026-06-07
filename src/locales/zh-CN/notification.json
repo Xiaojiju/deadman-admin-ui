@@ -1,0 +1,73 @@
+{
+  "page": {
+    "title": "站内信",
+    "inboxTab": "收件箱",
+    "sentTab": "已发送"
+  },
+  "inbox": {
+    "title": "收件箱",
+    "desc": "查看系统通知与消息。",
+    "searchPlaceholder": "搜索标题或内容…",
+    "filterAll": "全部",
+    "filterUnread": "未读",
+    "filterRead": "已读",
+    "unreadCount": "{{count}} 条未读",
+    "markAllRead": "全部已读",
+    "markRead": "标记已读",
+    "read": "已读",
+    "unread": "未读",
+    "receivedAt": "接收时间",
+    "readAt": "阅读时间",
+    "emptyList": "暂无通知",
+    "emptyDetailTitle": "选择一条通知",
+    "emptyDetailDesc": "从左侧列表选择通知查看详情。",
+    "toast": {
+      "markedRead": "已标记为已读",
+      "markedAllRead": "已全部标记为已读",
+      "markReadFailed": "标记已读失败",
+      "markAllReadFailed": "全部标记已读失败",
+      "view": "查看"
+    }
+  },
+  "sent": {
+    "searchPlaceholder": "搜索标题…",
+    "emptyList": "暂无已发送记录",
+    "targetType": "发送范围",
+    "recipientCount": "{{count}} 人",
+    "recipientCountLabel": "投递人数",
+    "sentAt": "发送时间"
+  },
+  "send": {
+    "title": "发送站内信",
+    "desc": "向指定用户、部门、职位或全体用户发送通知。",
+    "compose": "发送站内信",
+    "submit": "发送",
+    "searchUsers": "搜索用户…",
+    "targetAllHint": "将发送给系统中所有活跃用户。",
+    "fields": {
+      "title": "标题",
+      "content": "正文",
+      "targetType": "发送范围",
+      "users": "接收用户",
+      "departments": "接收部门",
+      "positions": "接收职位"
+    },
+    "targetTypes": {
+      "user": "指定用户",
+      "department": "按部门",
+      "position": "按职位",
+      "all": "全体用户"
+    },
+    "validation": {
+      "titleRequired": "请输入标题。",
+      "contentRequired": "请输入正文。",
+      "usersRequired": "请至少选择一名用户。",
+      "departmentsRequired": "请至少选择一个部门。",
+      "positionsRequired": "请至少选择一个职位。"
+    },
+    "toast": {
+      "success": "发送成功，已投递 {{count}} 人",
+      "failed": "发送失败"
+    }
+  }
+}

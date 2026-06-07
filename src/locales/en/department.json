@@ -1,0 +1,49 @@
+{
+  "title": "Departments",
+  "desc": "Manage organizational departments in a tree structure.",
+  "create": "Create Department",
+  "createChild": "Add Sub-department",
+  "filter": "Search by name or code…",
+  "noDepartments": "No departments found.",
+  "rootParent": "Root (no parent)",
+  "columns": {
+    "deptCode": "Dept Code",
+    "deptName": "Dept Name",
+    "sortOrder": "Sort",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Disabled"
+  },
+  "actions": {
+    "addChild": "Add Sub-department",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "dialogs": {
+    "createTitle": "Create Department",
+    "createDesc": "Add a new department. deptCode must be globally unique.",
+    "createChildTitle": "Add Sub-department",
+    "createChildDesc": "Add a sub-department under {{name}}.",
+    "parent": "Parent Department",
+    "deptCode": "Dept Code",
+    "deptCodePlaceholder": "HQ",
+    "deptName": "Dept Name",
+    "deptNamePlaceholder": "Headquarters",
+    "sortOrder": "Sort Order",
+    "editTitle": "Edit Department",
+    "editDesc": "Update department {{name}}.",
+    "deleteTitle": "Delete Department",
+    "deleteDesc": "Delete department {{name}}? Cannot delete if it has sub-departments or linked users."
+  },
+  "validation": {
+    "deptCodeInvalid": "Invalid dept code format (uppercase letter first)."
+  },
+  "toast": {
+    "created": "Department created.",
+    "updated": "Department updated.",
+    "deleted": "Department deleted.",
+    "createFailed": "Failed to create department",
+    "updateFailed": "Failed to update department",
+    "deleteFailed": "Failed to delete department"
+  }
+}

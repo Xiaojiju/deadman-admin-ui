@@ -1,0 +1,160 @@
+{
+  "title": "Settings",
+  "description": "Manage your account settings and set e-mail preferences.",
+  "nav": {
+    "profile": "Profile",
+    "account": "Account",
+    "password": "Password",
+    "appearance": "Appearance",
+    "notifications": "Notifications",
+    "display": "Display"
+  },
+  "profile": {
+    "title": "Profile",
+    "desc": "This is how others will see you on the site.",
+    "userCode": "User Code",
+    "userCodeDesc": "Your unique identifier from the system.",
+    "nickname": "Nickname",
+    "nicknameDesc": "Display name from your account profile.",
+    "email": "Email",
+    "emailPlaceholder": "Select a verified email to display",
+    "emailDesc": "Placeholder field — not synced with API yet. Manage emails in email settings.",
+    "bio": "Bio",
+    "bioPlaceholder": "Tell us a little bit about yourself",
+    "bioDesc": "Placeholder field — not synced with API yet.",
+    "urls": "URLs",
+    "urlsDesc": "Placeholder field — not synced with API yet.",
+    "updateProfile": "Update profile",
+    "loading": "Loading profile...",
+    "validation": {
+      "nicknameRequired": "Nickname is required."
+    }
+  },
+  "account": {
+    "title": "Account",
+    "desc": "View basic information about the account you're signed in with.",
+    "userCode": "User Code",
+    "userCodeDesc": "Your account number in the system, used to identify you.",
+    "nickname": "Nickname",
+    "nicknameDesc": "The name shown in the app.",
+    "avatar": "Avatar",
+    "avatarDesc": "Your profile picture, shown in the header and other places.",
+    "avatarUpload": {
+      "select": "Choose image",
+      "confirm": "Confirm upload",
+      "cancel": "Cancel",
+      "pending": "Preview",
+      "desc": "JPG, PNG, WebP, or GIF up to 10MB. Preview before confirming to upload and save.",
+      "previewHint": "Previewing — confirm to upload and update your avatar.",
+      "toast": {
+        "success": "Avatar updated.",
+        "failed": "Failed to upload avatar. Please try again.",
+        "invalidType": "Only JPG, PNG, WebP, and GIF are supported.",
+        "tooLarge": "Image must be 10MB or smaller."
+      }
+    },
+    "noAvatar": "No avatar set yet",
+    "roles": "Roles",
+    "noRoles": "No roles assigned",
+    "rolesDesc": "Your roles in this system determine which features you can use.",
+    "status": "Status",
+    "statusActive": "Active",
+    "statusInactive": "Disabled",
+    "username": "Sign-in username",
+    "usernameDesc": "Your main account name used to sign in.",
+    "accounts": "Linked accounts",
+    "accountsDesc": "Sign-in methods linked to your account, such as username or social login.",
+    "accountTypeLabel": "Type",
+    "accountIdentifier": "Account",
+    "oauthProvider": "Platform",
+    "accountType": {
+      "USERNAME": "Username",
+      "PHONE": "Phone",
+      "OAUTH": "Social login"
+    },
+    "accountStatusActive": "Active",
+    "accountStatusInactive": "Disabled",
+    "noAccounts": "No linked sign-in methods",
+    "avatarPlaceholder": "Enter an image link for your avatar",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "createdAt": "Created At",
+    "loading": "Loading account...",
+    "loadFailed": "Could not load account information. Please try again later.",
+    "validation": {
+      "nicknameRequired": "Nickname is required."
+    },
+    "toast": {
+      "updated": "Profile saved.",
+      "updateFailed": "Failed to save. Please try again later."
+    }
+  },
+  "password": {
+    "title": "Password",
+    "desc": "Change your password here. After saving, you'll need to use the new password next time you sign in.",
+    "current": "Current Password",
+    "currentPlaceholder": "Enter current password",
+    "new": "New Password",
+    "newPlaceholder": "Enter new password",
+    "newDesc": "Must be at least 8 characters long.",
+    "confirm": "Confirm New Password",
+    "confirmPlaceholder": "Confirm new password",
+    "update": "Update password",
+    "success": "Password updated successfully.",
+    "failed": "Failed to change password",
+    "validation": {
+      "currentRequired": "Please enter your current password.",
+      "newMin": "New password must be at least 8 characters.",
+      "newMax": "New password must not exceed 128 characters.",
+      "confirmRequired": "Please confirm your new password.",
+      "mismatch": "Passwords do not match."
+    }
+  },
+  "appearance": {
+    "title": "Appearance",
+    "desc": "Customize the appearance of the app. Automatically switch between day and night themes.",
+    "form": {
+      "font": "Font",
+      "fontDesc": "Set the font you want to use in the dashboard.",
+      "theme": "Theme",
+      "themeDesc": "Select the theme for the dashboard.",
+      "update": "Update preferences"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "desc": "Configure where toast notifications appear on the screen.",
+    "positionTitle": "Display position",
+    "positionDesc": "Choose where notifications pop up. Click an option to preview.",
+    "previewToast": "Notifications will appear here",
+    "positions": {
+      "topLeft": "Top left",
+      "topCenter": "Top center",
+      "topRight": "Top right",
+      "bottomLeft": "Bottom left",
+      "bottomCenter": "Bottom center",
+      "bottomRight": "Bottom right"
+    }
+  },
+  "display": {
+    "title": "Display",
+    "desc": "Turn items on or off to control what's displayed in the app.",
+    "form": {
+      "sidebar": "Sidebar",
+      "sidebarDesc": "Select the items you want to display in the sidebar.",
+      "items": {
+        "recents": "Recents",
+        "home": "Home",
+        "applications": "Applications",
+        "desktop": "Desktop",
+        "downloads": "Downloads",
+        "documents": "Documents"
+      },
+      "update": "Update display",
+      "validation": {
+        "selectOne": "You have to select at least one item."
+      }
+    }
+  },
+  "navPlaceholder": "Select a settings page"
+}

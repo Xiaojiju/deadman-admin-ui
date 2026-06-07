@@ -1,0 +1,95 @@
+{
+  "sidebar": {
+    "general": "General",
+    "organization": "Organization",
+    "system": "System",
+    "other": "Other",
+    "users": "Users",
+    "roles": "Roles",
+    "permissions": "Permissions",
+    "departments": "Departments",
+    "positions": "Positions",
+    "settings": "Settings",
+    "profile": "Profile",
+    "account": "Account",
+    "password": "Password",
+    "appearance": "Appearance",
+    "notifications": "Notifications",
+    "display": "Display",
+    "helpCenter": "Help Center",
+    "inbox": "Inbox",
+    "client": "Client",
+    "clientUsers": "Users"
+  },
+  "teams": {
+    "title": "Teams",
+    "addTeam": "Add team",
+    "shadcnAdmin": "Shadcn Admin",
+    "vitePlan": "Vite + ShadcnUI",
+    "acmeInc": "Acme Inc",
+    "enterprise": "Enterprise",
+    "acmeCorp": "Acme Corp.",
+    "startup": "Startup"
+  },
+  "navUser": {
+    "upgradeToPro": "Upgrade to Pro",
+    "billing": "Billing"
+  },
+  "profileDropdown": {
+    "profile": "Profile",
+    "billing": "Billing",
+    "settings": "Settings",
+    "newTeam": "New Team"
+  },
+  "config": {
+    "title": "Theme Settings",
+    "description": "Adjust the appearance and layout to suit your preferences.",
+    "openAria": "Open theme settings",
+    "resetAria": "Reset all settings to default values",
+    "theme": "Theme",
+    "sidebar": "Sidebar",
+    "layout": "Layout",
+    "direction": "Direction",
+    "language": "Language",
+    "languageDesc": "Select the language for the dashboard interface.",
+    "colorTheme": "Color",
+    "colorThemeDesc": "Choose the primary color palette for the interface.",
+    "colorThemeResetAria": "Reset color theme to default",
+    "colorThemes": {
+      "neutral": "Neutral",
+      "blue": "Blue",
+      "green": "Green",
+      "violet": "Violet",
+      "rose": "Rose",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "red": "Red"
+    },
+    "themeResetAria": "Reset theme preference to default",
+    "themeSelectAria": "Select theme preference",
+    "themeDesc": "Choose between system preference, light mode, or dark mode",
+    "sidebarResetAria": "Reset sidebar style to default",
+    "sidebarSelectAria": "Select sidebar style",
+    "sidebarDesc": "Choose between inset, floating, or standard sidebar layout",
+    "sidebarVariants": {
+      "inset": "Inset",
+      "floating": "Floating",
+      "sidebar": "Sidebar"
+    },
+    "layoutResetAria": "Reset layout options to default",
+    "layoutSelectAria": "Select layout style",
+    "layoutDesc": "Choose between default expanded, compact icon-only, or full layout mode",
+    "layoutVariants": {
+      "default": "Default",
+      "compact": "Compact",
+      "fullLayout": "Full layout"
+    },
+    "directionResetAria": "Reset text direction to default",
+    "directionSelectAria": "Select site direction",
+    "directionDesc": "Choose between left-to-right or right-to-left site direction",
+    "directionLtr": "Left to Right",
+    "directionRtl": "Right to Left",
+    "selectOption": "Select {{label}}",
+    "optionPreview": "{{label}} option preview"
+  }
+}

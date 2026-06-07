@@ -1,0 +1,148 @@
+{
+  "users": {
+    "title": "Users",
+    "desc": "Manage admin users, organization, status, and role assignments.",
+    "create": "Create User",
+    "filter": "Search username, nickname, or user code…",
+    "statusFilter": "Status",
+    "statusAll": "All statuses",
+    "noUsers": "No users found.",
+    "columns": {
+      "username": "User",
+      "userCode": "User Code",
+      "phone": "Phone",
+      "department": "Department",
+      "positions": "Positions",
+      "roles": "Roles",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Disabled",
+      "createTime": "Created"
+    },
+    "actions": {
+      "roles": "Assign Roles",
+      "edit": "Edit",
+      "resetPassword": "Reset Password",
+      "delete": "Delete"
+    },
+    "dialogs": {
+      "createTitle": "Create User",
+      "createDesc": "Create an account; USER role is bound by default. Optionally bind phone, department, and positions.",
+      "username": "Username",
+      "usernamePlaceholder": "login_name",
+      "password": "Password",
+      "nickname": "Nickname",
+      "avatar": "Avatar",
+      "avatarDesc": "Preview and confirm to upload; the saved user will use the uploaded URL.",
+      "avatarUpload": {
+        "select": "Choose image",
+        "confirm": "Confirm upload",
+        "cancel": "Cancel",
+        "pending": "Preview",
+        "desc": "JPG, PNG, WebP, or GIF up to 10MB.",
+        "previewHint": "Previewing — confirm to upload the avatar.",
+        "toast": {
+          "success": "Avatar uploaded.",
+          "failed": "Failed to upload avatar. Please try again.",
+          "invalidType": "Only JPG, PNG, WebP, and GIF are supported.",
+          "tooLarge": "Image must be 10MB or smaller."
+        }
+      },
+      "phone": "Phone",
+      "phonePlaceholder": "13800138000",
+      "department": "Department",
+      "noDepartment": "No department",
+      "positions": "Positions",
+      "noPositions": "No positions available",
+      "positionsHint": "Must match the selected department; without a department, only global positions apply.",
+      "globalPosition": "Global",
+      "editTitle": "Edit User",
+      "editDesc": "Update profile, organization, and status for {{username}}.",
+      "superAdminStatusHint": "Super admin cannot be disabled.",
+      "assignRolesTitle": "Assign Roles",
+      "assignRolesDesc": "Replace role bindings for {{name}}.",
+      "saveRoles": "Save roles",
+      "deleteTitle": "Delete User",
+      "deleteDesc": "Delete user {{name}}? This is a logical delete and cannot be undone.",
+      "resetPasswordTitle": "Reset Password",
+      "resetPasswordDesc": "Set a new password for {{name}} without the old password.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "resetPasswordSubmit": "Reset password"
+    },
+    "validation": {
+      "passwordMismatch": "Passwords do not match.",
+      "phoneInvalid": "Invalid phone number format."
+    },
+    "toast": {
+      "created": "User created.",
+      "updated": "User updated.",
+      "deleted": "User deleted.",
+      "rolesAssigned": "Roles assigned.",
+      "createFailed": "Failed to create user",
+      "updateFailed": "Failed to update user",
+      "deleteFailed": "Failed to delete user",
+      "assignRolesFailed": "Failed to assign roles",
+      "passwordReset": "Password reset.",
+      "passwordResetFailed": "Failed to reset password"
+    }
+  },
+  "roles": {
+    "title": "Roles",
+    "desc": "Manage RBAC roles and their permissions.",
+    "create": "Create Role",
+    "filter": "Filter roles...",
+    "noRoles": "No roles found.",
+    "columns": {
+      "roleCode": "Role Code",
+      "roleName": "Role Name",
+      "description": "Description",
+      "status": "Status",
+      "builtin": "Built-in",
+      "active": "Active",
+      "inactive": "Inactive",
+      "system": "System"
+    },
+    "actions": {
+      "permissions": "Permissions",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "dialogs": {
+      "createTitle": "Create Role",
+      "createDesc": "Add a new role with optional initial permissions.",
+      "roleCode": "Role Code",
+      "roleCodePlaceholder": "ADMIN",
+      "roleName": "Role Name",
+      "roleNamePlaceholder": "Administrator",
+      "description": "Description",
+      "permissions": "Permissions",
+      "editTitle": "Edit Role",
+      "editDesc": "Update role metadata for {{code}}.",
+      "assignTitle": "Assign Permissions",
+      "assignDesc": "Manage permissions for {{name}}.",
+      "savePermissions": "Save permissions",
+      "deleteTitle": "Delete Role",
+      "deleteDesc": "Are you sure you want to delete role {{name}}? This action cannot be undone."
+    },
+    "validation": {
+      "roleCodeInvalid": "Invalid role code format."
+    },
+    "toast": {
+      "created": "Role created.",
+      "updated": "Role updated.",
+      "deleted": "Role deleted.",
+      "permissionsAssigned": "Permissions assigned.",
+      "createFailed": "Failed to create role",
+      "updateFailed": "Failed to update role",
+      "deleteFailed": "Failed to delete role",
+      "assignFailed": "Failed to assign permissions"
+    }
+  },
+  "permissions": {
+    "title": "Permissions",
+    "desc": "Permission catalog grouped by module or as a flat list.",
+    "byGroup": "By Group",
+    "flatList": "Flat List"
+  }
+}

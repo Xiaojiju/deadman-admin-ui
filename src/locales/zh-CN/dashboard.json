@@ -1,0 +1,56 @@
+{
+  "title": "仪表盘",
+  "download": "下载",
+  "tabs": {
+    "overview": "概览",
+    "analytics": "分析",
+    "reports": "报表",
+    "notifications": "通知"
+  },
+  "topNav": {
+    "overview": "概览",
+    "customers": "客户",
+    "products": "产品",
+    "settings": "设置"
+  },
+  "cards": {
+    "totalRevenue": "总收入",
+    "subscriptions": "订阅数",
+    "sales": "销售额",
+    "activeNow": "当前在线",
+    "revenueChange": "较上月 +20.1%",
+    "subscriptionsChange": "较上月 +180.1%",
+    "salesChange": "较上月 +19%",
+    "activeChange": "较上一小时 +201"
+  },
+  "analytics": {
+    "title": "流量概览",
+    "desc": "每周点击与独立访客",
+    "totalClicks": "总点击量",
+    "uniqueVisitors": "独立访客",
+    "bounceRate": "跳出率",
+    "avgSession": "平均会话",
+    "vsLastWeekUp": "较上周 +{{value}}",
+    "vsLastWeekDown": "较上周 {{value}}",
+    "referrers": "来源",
+    "referrersDesc": "主要流量来源",
+    "devices": "设备",
+    "devicesDesc": "用户访问方式",
+    "referrerNames": {
+      "direct": "直接访问",
+      "productHunt": "Product Hunt",
+      "twitter": "Twitter",
+      "blog": "博客"
+    },
+    "deviceNames": {
+      "desktop": "桌面",
+      "mobile": "移动",
+      "tablet": "平板"
+    }
+  },
+  "recentSales": {
+    "title": "最近销售",
+    "desc": "本月您完成了 265 笔销售。",
+    "avatarAlt": "头像"
+  }
+}

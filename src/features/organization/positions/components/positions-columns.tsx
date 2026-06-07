@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
 import { type ColumnDef } from '@tanstack/react-table'
+import { type PositionVO } from '@/types/api'
 import { MoreHorizontal, Pencil, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { PERMISSIONS } from '@/constants/permissions'
-import { type PositionVO } from '@/types/api'
 import { usePermission } from '@/hooks/use-permission'
-import { PermissionGate } from '@/components/permission'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -16,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '@/components/data-table'
+import { PermissionGate } from '@/components/permission'
 import { usePositions } from './positions-provider'
 
 export function usePositionsColumns(
@@ -34,7 +34,9 @@ export function usePositionsColumns(
           />
         ),
         cell: ({ row }) => (
-          <span className='font-mono text-sm'>{row.getValue('positionCode')}</span>
+          <span className='font-mono text-sm'>
+            {row.getValue('positionCode')}
+          </span>
         ),
       },
       {
@@ -52,9 +54,7 @@ export function usePositionsColumns(
         cell: ({ row }) => {
           const departmentId = row.getValue<string | null>('departmentId')
           if (!departmentId) {
-            return (
-              <Badge variant='outline'>{t('globalDepartment')}</Badge>
-            )
+            return <Badge variant='outline'>{t('globalDepartment')}</Badge>
           }
           return departmentNameById.get(departmentId) ?? departmentId
         },

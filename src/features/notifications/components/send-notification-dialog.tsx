@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { z } from 'zod'
 import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -196,13 +196,14 @@ export function SendNotificationDialog({
     name: 'targetType',
   })
 
-  useEffect(() => {
-    if (!open) {
+  const handleOpenChange = (nextOpen: boolean) => {
+    if (!nextOpen) {
       form.reset()
       setUserKeyword('')
       setSelectedUsersMap({})
     }
-  }, [open, form])
+    onOpenChange(nextOpen)
+  }
 
   const { data: usersData, isFetching: usersLoading } = useQuery({
     queryKey: ['notification-send-users', userKeyword],
@@ -307,7 +308,7 @@ export function SendNotificationDialog({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className='flex max-h-[90vh] flex-col overflow-hidden sm:max-w-3xl'>
         <DialogHeader className='shrink-0'>
           <DialogTitle>{t('notification:send.title')}</DialogTitle>

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import useDialogState from '@/hooks/use-dialog-state'
 import { type PositionVO } from '@/types/api'
+import useDialogState from '@/hooks/use-dialog-state'
 
 type PositionsDialogType = 'create' | 'edit' | 'delete'
 

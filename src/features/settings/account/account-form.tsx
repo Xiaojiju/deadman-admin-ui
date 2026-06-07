@@ -10,12 +10,13 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { userApi } from '@/api/user'
 import { useAuthStore } from '@/stores/auth-store'
-import { ApiError } from '@/lib/http/api-error'
 import { resolveFileAccessUrl } from '@/lib/files/resolve-file-url'
+import { ApiError } from '@/lib/http/api-error'
 import { PERMISSIONS } from '@/constants/permissions'
 import { usePermission } from '@/hooks/use-permission'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -36,9 +37,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Button } from '@/components/ui/button'
-import { PermissionGate } from '@/components/permission'
 import { AvatarUploadField } from '@/components/avatar-upload-field'
+import { PermissionGate } from '@/components/permission'
 
 function createEditSchema(t: (key: string) => string) {
   return z.object({
@@ -266,7 +266,11 @@ export function AccountForm() {
                   <AvatarUploadField
                     value={field.value}
                     displayName={previewNickname}
-                    disabled={!canUpdate || isSubmitting || avatarUpdateMutation.isPending}
+                    disabled={
+                      !canUpdate ||
+                      isSubmitting ||
+                      avatarUpdateMutation.isPending
+                    }
                     onUploaded={async (accessUrl) => {
                       await avatarUpdateMutation.mutateAsync(accessUrl)
                     }}

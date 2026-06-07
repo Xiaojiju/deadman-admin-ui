@@ -3,12 +3,12 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { type DepartmentVO } from '@/types/api'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { departmentsApi } from '@/api/departments'
 import { positionsApi } from '@/api/positions'
 import { ApiError } from '@/lib/http/api-error'
-import { type DepartmentVO } from '@/types/api'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -132,7 +132,8 @@ export function PositionsDialogs() {
       : undefined,
   })
 
-  const invalidate = () => queryClient.invalidateQueries({ queryKey: ['positions'] })
+  const invalidate = () =>
+    queryClient.invalidateQueries({ queryKey: ['positions'] })
 
   const createMutation = useMutation({
     mutationFn: positionsApi.create,
@@ -144,9 +145,7 @@ export function PositionsDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('position:toast.createFailed')
+        e instanceof ApiError ? e.message : t('position:toast.createFailed')
       ),
   })
 
@@ -161,9 +160,7 @@ export function PositionsDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('position:toast.updateFailed')
+        e instanceof ApiError ? e.message : t('position:toast.updateFailed')
       ),
   })
 
@@ -177,9 +174,7 @@ export function PositionsDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('position:toast.deleteFailed')
+        e instanceof ApiError ? e.message : t('position:toast.deleteFailed')
       ),
   })
 

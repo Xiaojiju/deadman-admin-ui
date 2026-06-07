@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
-import { PageLayout } from '@/components/layout/page-layout'
 import { Main } from '@/components/layout/main'
+import { PageLayout } from '@/components/layout/page-layout'
 import { ClientUsersDialogs } from './components/client-users-dialogs'
 import { ClientUsersProvider } from './components/client-users-provider'
 import { ClientUsersTable } from './components/client-users-table'

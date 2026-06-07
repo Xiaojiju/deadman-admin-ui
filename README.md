@@ -166,7 +166,7 @@ npx shadcn@latest add <component>
 
 ## 基于模板
 
-本项目源自 [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin)，已移除 Clerk 登录、Tasks/Apps 等演示模块，并接入 Deadman 后端。原模板中的部分 feature 目录（如 `tasks/`、`chats/`）仍保留在仓库中但无对应路由，可用 `pnpm knip` 查看。
+本项目源自 [satnaing/shadcn-admin](https://github.com/satnaing/shadcn-admin)，已移除 Clerk 登录及原模板中的 Tasks、Apps、Chats 等演示模块，并接入 Deadman 后端。
 
 ## License
 

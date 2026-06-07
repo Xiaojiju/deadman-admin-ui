@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 
 type InboxNotificationToastProps = {
   toastId: string | number
@@ -22,7 +22,7 @@ export function InboxNotificationToast({
   return (
     <div
       className={cn(
-        'flex w-full min-w-[320px] max-w-[420px] flex-col gap-2 rounded-lg border bg-popover p-4 text-popover-foreground shadow-lg',
+        'flex w-full max-w-[420px] min-w-[320px] flex-col gap-2 rounded-lg border bg-popover p-4 text-popover-foreground shadow-lg',
         className
       )}
     >

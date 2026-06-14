@@ -160,6 +160,24 @@ export type ResetUserPasswordRequest = {
   newPassword: string
 }
 
+export type DataScopeType =
+  | 'ALL'
+  | 'CUSTOM'
+  | 'DEPT_AND_CHILD'
+  | 'DEPT'
+  | 'SELF'
+
+export type DataScopeVO = {
+  userId: string
+  scopeType: DataScopeType
+  customDeptIds: string[]
+}
+
+export type AssignUserDataScopeRequest = {
+  scopeType: DataScopeType
+  customDeptIds?: string[]
+}
+
 export type DepartmentVO = {
   id: string
   parentId: string | null

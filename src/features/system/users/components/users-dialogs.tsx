@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { rolesApi } from '@/api/system'
 import { usersApi } from '@/api/users'
-import { type RoleSummaryVO } from '@/types/api'
+import { type RoleSummaryVO, type DataScopeType } from '@/types/api'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -41,6 +41,7 @@ import {
 } from '@/components/ui/select'
 import { isSuperAdminUser } from '../utils'
 import { useUsers } from './users-provider'
+import { UserDataScopeDialogContent } from './user-data-scope-dialog-content'
 import { UserOrgFormFields } from './user-org-fields'
 
 const phoneSchema = (message: string) =>
@@ -154,6 +155,12 @@ export function UsersDialogs() {
     queryKey: ['roles'],
     queryFn: () => rolesApi.list(),
     enabled: open === 'roles',
+  })
+
+  const { data: dataScope } = useQuery({
+    queryKey: ['users', currentRow?.id, 'data-scope'],
+    queryFn: () => usersApi.getDataScope(currentRow!.id),
+    enabled: open === 'dataScope' && !!currentRow,
   })
 
   const createForm = useForm<z.infer<typeof createSchema>>({
@@ -300,6 +307,27 @@ export function UsersDialogs() {
         e instanceof ApiError
           ? e.message
           : t('system:users.toast.assignRolesFailed')
+      ),
+  })
+
+  const assignDataScopeMutation = useMutation({
+    mutationFn: (payload: {
+      scopeType: DataScopeType
+      customDeptIds?: string[]
+    }) => usersApi.assignDataScope(currentRow!.id, payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['users', currentRow?.id, 'data-scope'],
+      })
+      setOpen(null)
+      setCurrentRow(null)
+      toast.success(t('system:users.toast.dataScopeAssigned'))
+    },
+    onError: (e) =>
+      toast.error(
+        e instanceof ApiError
+          ? e.message
+          : t('system:users.toast.assignDataScopeFailed')
       ),
   })
 
@@ -570,6 +598,28 @@ export function UsersDialogs() {
               isPending={assignRolesMutation.isPending}
               saveLabel={t('system:users.dialogs.saveRoles')}
               onSave={(roleIds) => assignRolesMutation.mutate(roleIds)}
+            />
+          ) : null}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={open === 'dataScope'} onOpenChange={() => setOpen(null)}>
+        <DialogContent className='sm:max-w-lg'>
+          <DialogHeader>
+            <DialogTitle>{t('system:users.dialogs.assignDataScopeTitle')}</DialogTitle>
+            <DialogDescription>
+              {t('system:users.dialogs.assignDataScopeDesc', {
+                name: currentRow?.nickname || currentRow?.username || '',
+              })}
+            </DialogDescription>
+          </DialogHeader>
+          {dataScope ? (
+            <UserDataScopeDialogContent
+              key={dataScope.userId}
+              dataScope={dataScope}
+              isPending={assignDataScopeMutation.isPending}
+              saveLabel={t('system:users.dialogs.saveDataScope')}
+              onSave={(payload) => assignDataScopeMutation.mutate(payload)}
             />
           ) : null}
         </DialogContent>

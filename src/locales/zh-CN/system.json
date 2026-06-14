@@ -21,6 +21,7 @@
     },
     "actions": {
       "roles": "分配角色",
+      "dataScope": "数据权限",
       "edit": "编辑",
       "resetPassword": "重置密码",
       "delete": "删除"
@@ -62,6 +63,12 @@
       "assignRolesTitle": "分配角色",
       "assignRolesDesc": "为 {{name}} 覆盖式绑定角色。",
       "saveRoles": "保存角色",
+      "assignDataScopeTitle": "分配数据权限",
+      "assignDataScopeDesc": "为 {{name}} 设置行级数据范围，与角色 RBAC 独立。",
+      "dataScopeType": "数据范围",
+      "customDepartments": "可见部门",
+      "noDepartments": "暂无部门",
+      "saveDataScope": "保存数据权限",
       "deleteTitle": "删除用户",
       "deleteDesc": "确定要删除用户 {{name}} 吗？此操作为逻辑删除且不可撤销。",
       "resetPasswordTitle": "重置密码",
@@ -72,19 +79,34 @@
     },
     "validation": {
       "passwordMismatch": "两次输入的密码不一致。",
-      "phoneInvalid": "手机号格式无效。"
+      "phoneInvalid": "手机号格式无效。",
+      "customDeptRequired": "自定义范围至少选择一个部门。"
     },
     "toast": {
       "created": "用户已创建。",
       "updated": "用户已更新。",
       "deleted": "用户已删除。",
       "rolesAssigned": "角色已分配。",
+      "dataScopeAssigned": "数据权限已保存。",
       "createFailed": "创建用户失败",
       "updateFailed": "更新用户失败",
       "deleteFailed": "删除用户失败",
       "assignRolesFailed": "分配角色失败",
+      "assignDataScopeFailed": "保存数据权限失败",
       "passwordReset": "密码已重置。",
       "passwordResetFailed": "重置密码失败"
+    },
+    "dataScopeTypes": {
+      "ALL": "全部数据",
+      "ALLDesc": "可访问全部业务数据。",
+      "CUSTOM": "自定义部门",
+      "CUSTOMDesc": "仅可访问所选部门的数据。",
+      "DEPT_AND_CHILD": "本部门及下级",
+      "DEPT_AND_CHILDDesc": "可访问本部门及所有下级部门的数据。",
+      "DEPT": "本部门",
+      "DEPTDesc": "仅可访问本部门数据（未配置时的默认值）。",
+      "SELF": "仅本人",
+      "SELFDesc": "仅可访问本人创建或归属的数据。"
     }
   },
   "roles": {

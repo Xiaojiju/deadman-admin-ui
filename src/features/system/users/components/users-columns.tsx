@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { type ColumnDef } from '@tanstack/react-table'
-import { KeyRound, MoreHorizontal, Pencil, Shield, Trash2 } from 'lucide-react'
+import { KeyRound, MoreHorizontal, Pencil, Shield, Database, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { PERMISSIONS } from '@/constants/permissions'
 import { type UserAdminSummaryVO } from '@/types/api'
@@ -180,6 +180,17 @@ function UserRowActions({ row }: { row: UserAdminSummaryVO }) {
           >
             <Shield className='me-2 h-4 w-4' />
             {t('users.actions.roles')}
+          </DropdownMenuItem>
+        </PermissionGate>
+        <PermissionGate permission={PERMISSIONS.USER_UPDATE}>
+          <DropdownMenuItem
+            onClick={() => {
+              setCurrentRow(row)
+              setOpen('dataScope')
+            }}
+          >
+            <Database className='me-2 h-4 w-4' />
+            {t('users.actions.dataScope')}
           </DropdownMenuItem>
         </PermissionGate>
         <PermissionGate permission={PERMISSIONS.USER_UPDATE}>

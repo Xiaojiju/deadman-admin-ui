@@ -7,6 +7,8 @@ import {
   type UserAdminPageQuery,
   type UserAdminSummaryVO,
   type AssignUserRolesRequest,
+  type AssignUserDataScopeRequest,
+  type DataScopeVO,
   type ResetUserPasswordRequest,
 } from '@/types/api'
 
@@ -37,5 +39,13 @@ export const usersApi = {
 
   resetPassword(userId: string, body: ResetUserPasswordRequest) {
     return put<void>(`/api/users/${userId}/password`, body)
+  },
+
+  getDataScope(userId: string) {
+    return get<DataScopeVO>(`/api/users/${userId}/data-scope`)
+  },
+
+  assignDataScope(userId: string, body: AssignUserDataScopeRequest) {
+    return put<DataScopeVO>(`/api/users/${userId}/data-scope`, body)
   },
 }

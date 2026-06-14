@@ -2,7 +2,13 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
 import useDialogState from '@/hooks/use-dialog-state'
 import { type UserAdminSummaryVO } from '@/types/api'
 
-type UsersDialogType = 'create' | 'edit' | 'delete' | 'roles' | 'resetPassword'
+type UsersDialogType =
+  | 'create'
+  | 'edit'
+  | 'delete'
+  | 'roles'
+  | 'dataScope'
+  | 'resetPassword'
 
 type UsersContextType = {
   open: UsersDialogType | null

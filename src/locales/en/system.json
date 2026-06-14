@@ -21,6 +21,7 @@
     },
     "actions": {
       "roles": "Assign Roles",
+      "dataScope": "Data Scope",
       "edit": "Edit",
       "resetPassword": "Reset Password",
       "delete": "Delete"
@@ -62,6 +63,12 @@
       "assignRolesTitle": "Assign Roles",
       "assignRolesDesc": "Replace role bindings for {{name}}.",
       "saveRoles": "Save roles",
+      "assignDataScopeTitle": "Assign Data Scope",
+      "assignDataScopeDesc": "Set row-level data scope for {{name}}, independent of RBAC roles.",
+      "dataScopeType": "Data scope",
+      "customDepartments": "Visible departments",
+      "noDepartments": "No departments available",
+      "saveDataScope": "Save data scope",
       "deleteTitle": "Delete User",
       "deleteDesc": "Delete user {{name}}? This is a logical delete and cannot be undone.",
       "resetPasswordTitle": "Reset Password",
@@ -72,19 +79,34 @@
     },
     "validation": {
       "passwordMismatch": "Passwords do not match.",
-      "phoneInvalid": "Invalid phone number format."
+      "phoneInvalid": "Invalid phone number format.",
+      "customDeptRequired": "Select at least one department for custom scope."
     },
     "toast": {
       "created": "User created.",
       "updated": "User updated.",
       "deleted": "User deleted.",
       "rolesAssigned": "Roles assigned.",
+      "dataScopeAssigned": "Data scope saved.",
       "createFailed": "Failed to create user",
       "updateFailed": "Failed to update user",
       "deleteFailed": "Failed to delete user",
       "assignRolesFailed": "Failed to assign roles",
+      "assignDataScopeFailed": "Failed to save data scope",
       "passwordReset": "Password reset.",
       "passwordResetFailed": "Failed to reset password"
+    },
+    "dataScopeTypes": {
+      "ALL": "All data",
+      "ALLDesc": "Access to all business data.",
+      "CUSTOM": "Custom departments",
+      "CUSTOMDesc": "Access only to selected departments.",
+      "DEPT_AND_CHILD": "Department and subordinates",
+      "DEPT_AND_CHILDDesc": "Access to this department and all child departments.",
+      "DEPT": "Department only",
+      "DEPTDesc": "Access to this department only (default when unset).",
+      "SELF": "Self only",
+      "SELFDesc": "Access only to data owned by or assigned to the user."
     }
   },
   "roles": {

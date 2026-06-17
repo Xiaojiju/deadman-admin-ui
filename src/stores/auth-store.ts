@@ -1,16 +1,18 @@
-import { create } from 'zustand'
-import { authApi } from '@/api/auth'
-import { componentsApi } from '@/api/components'
-import { userApi } from '@/api/user'
-import { hasPermission } from '@/lib/permissions'
-import { getCookie, setCookie, removeCookie } from '@/lib/cookies'
 import {
   type AuthTokenVO,
   type UserAuthorityVO,
   type UserProfileVO,
 } from '@/types/api'
-
-const ACCESS_TOKEN_KEY = 'deadman_access_token'
+import { create } from 'zustand'
+import { authApi } from '@/api/auth'
+import { componentsApi } from '@/api/components'
+import { userApi } from '@/api/user'
+import {
+  clearAccessToken,
+  getAccessToken,
+  setAccessToken,
+} from '@/lib/auth/token-storage'
+import { hasPermission } from '@/lib/permissions'
 
 export type AuthUser = UserProfileVO
 
@@ -23,7 +25,7 @@ interface AuthState {
     superAdmin: boolean
     installedComponentCodes: string[]
     sessionInitialized: boolean
-    setAccessToken: (accessToken: string) => void
+    setAccessToken: (accessToken: string, expiresInSec?: number) => void
     setSession: (token: AuthTokenVO) => void
     setAuthority: (authority: UserAuthorityVO) => void
     setUser: (user: AuthUser | null) => void
@@ -34,8 +36,7 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>()((set, get) => {
-  const cookieState = getCookie(ACCESS_TOKEN_KEY)
-  const initToken = cookieState ? JSON.parse(cookieState) : ''
+  const initToken = getAccessToken()
 
   return {
     auth: {
@@ -47,32 +48,30 @@ export const useAuthStore = create<AuthState>()((set, get) => {
       installedComponentCodes: [],
       sessionInitialized: false,
 
-      setAccessToken: (accessToken) =>
-        set((state) => {
-          setCookie(ACCESS_TOKEN_KEY, JSON.stringify(accessToken))
-          return { ...state, auth: { ...state.auth, accessToken } }
-        }),
+      setAccessToken: (accessToken, expiresInSec) => {
+        setAccessToken(accessToken, expiresInSec)
+        set((state) => ({ ...state, auth: { ...state.auth, accessToken } }))
+      },
 
-      setSession: (token) =>
-        set((state) => {
-          setCookie(ACCESS_TOKEN_KEY, JSON.stringify(token.accessToken))
-          return {
-            ...state,
-            auth: {
-              ...state.auth,
-              accessToken: token.accessToken,
-              user: {
-                userCode: token.userCode,
-                username: null,
-                nickname: token.nickname,
-                avatar: null,
-                status: 1,
-                accounts: [],
-                createTime: '',
-              },
+      setSession: (token) => {
+        setAccessToken(token.accessToken, token.expiresIn)
+        set((state) => ({
+          ...state,
+          auth: {
+            ...state.auth,
+            accessToken: token.accessToken,
+            user: {
+              userCode: token.userCode,
+              username: null,
+              nickname: token.nickname,
+              avatar: null,
+              status: 1,
+              accounts: [],
+              createTime: '',
             },
-          }
-        }),
+          },
+        }))
+      },
 
       setAuthority: (authority) =>
         set((state) => ({
@@ -118,23 +117,22 @@ export const useAuthStore = create<AuthState>()((set, get) => {
         }))
       },
 
-      reset: () =>
-        set((state) => {
-          removeCookie(ACCESS_TOKEN_KEY)
-          return {
-            ...state,
-            auth: {
-              ...state.auth,
-              user: null,
-              accessToken: '',
-              roleCodes: [],
-              permissionCodes: [],
-              superAdmin: false,
-              installedComponentCodes: [],
-              sessionInitialized: false,
-            },
-          }
-        }),
+      reset: () => {
+        clearAccessToken()
+        set((state) => ({
+          ...state,
+          auth: {
+            ...state.auth,
+            user: null,
+            accessToken: '',
+            roleCodes: [],
+            permissionCodes: [],
+            superAdmin: false,
+            installedComponentCodes: [],
+            sessionInitialized: false,
+          },
+        }))
+      },
     },
   }
 })

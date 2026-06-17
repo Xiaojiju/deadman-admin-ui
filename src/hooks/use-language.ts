@@ -1,6 +1,9 @@
-import { useTranslation } from 'react-i18next'
-import { SUPPORTED_LANGUAGES, type SupportedLanguageCode } from '@/i18n/languages'
 import i18n from '@/i18n'
+import {
+  SUPPORTED_LANGUAGES,
+  type SupportedLanguageCode,
+} from '@/i18n/languages'
+import { useTranslation } from 'react-i18next'
 
 export function useLanguage() {
   const { i18n: i18nInstance } = useTranslation()

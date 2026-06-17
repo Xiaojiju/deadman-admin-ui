@@ -1,9 +1,8 @@
 import { useState, type JSX } from 'react'
 import { useLocation, useNavigate, Link } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { type PermissionInput } from '@/constants/permissions'
 import { cn } from '@/lib/utils'
-import { PermissionGate } from '@/components/permission'
+import { type PermissionInput } from '@/constants/permissions'
 import { buttonVariants } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
@@ -13,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { PermissionGate } from '@/components/permission'
 
 type SidebarNavProps = React.HTMLAttributes<HTMLElement> & {
   items: {

@@ -1,9 +1,8 @@
+import { type DepartmentTreeVO } from '@/types/api'
 import { MoreHorizontal, Pencil, Plus, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { PERMISSIONS } from '@/constants/permissions'
-import { type DepartmentTreeVO } from '@/types/api'
 import { usePermission } from '@/hooks/use-permission'
-import { PermissionGate } from '@/components/permission'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -11,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { PermissionGate } from '@/components/permission'
 import { useDepartments } from './departments-provider'
 
 export function DepartmentRowActions({ row }: { row: DepartmentTreeVO }) {

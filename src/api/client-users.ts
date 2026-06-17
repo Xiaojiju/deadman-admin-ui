@@ -1,14 +1,16 @@
-import { del, get, put } from '@/lib/http/request'
 import {
   type ClientUserAdminDetailVO,
   type ClientUserAdminPageQuery,
   type ClientUserAdminSummaryVO,
   type PageVO,
 } from '@/types/api'
+import { del, get, put } from '@/lib/http/request'
 
 export const clientUsersApi = {
   page(params: ClientUserAdminPageQuery) {
-    return get<PageVO<ClientUserAdminSummaryVO>>('/api/client-users', { params })
+    return get<PageVO<ClientUserAdminSummaryVO>>('/api/client-users', {
+      params,
+    })
   },
 
   getById(userId: string) {

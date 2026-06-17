@@ -1,6 +1,7 @@
 {
   "sidebar": {
     "general": "通用",
+    "overview": "概览",
     "organization": "组织",
     "system": "系统",
     "other": "其他",
@@ -91,5 +92,91 @@
     "directionRtl": "从右到左",
     "selectOption": "选择 {{label}}",
     "optionPreview": "{{label}} 选项预览"
+  },
+  "aiChat": {
+    "open": "打开 AI 助手",
+    "close": "关闭",
+    "expand": "全屏",
+    "history": "历史记录",
+    "newChat": "新对话",
+    "newChatTitle": "新对话",
+    "backToChat": "返回对话",
+    "emptyHistory": "暂无历史会话",
+    "userFallback": "我",
+    "copy": "复制",
+    "copySuccess": "已复制到剪贴板",
+    "copyFailed": "复制失败，请重试",
+    "more": "更多",
+    "speak": "朗读",
+    "regenerate": "重新生成",
+    "thumbsUp": "有帮助",
+    "thumbsDown": "无帮助",
+    "thinking": "思考",
+    "thinkingInProgress": "正在思考…",
+    "thinkingProcess": "思考过程",
+    "webSearch": "联网",
+    "attachFile": "添加附件",
+    "removeAttachment": "移除附件",
+    "sentWithAttachments": "（附件）",
+    "model": "模型",
+    "tone": "语气",
+    "scene": "场景",
+    "outputLanguage": "输出语言",
+    "models": {
+      "gpt-4o": "GPT-4o",
+      "gpt-4oDesc": "综合能力最强，适合复杂分析与多轮对话",
+      "gpt-4o-mini": "GPT-4o Mini",
+      "gpt-4o-miniDesc": "响应更快，适合日常问答与轻量任务",
+      "claude-sonnet": "Claude Sonnet",
+      "claude-sonnetDesc": "长文本理解优秀，适合文档总结与写作"
+    },
+    "tones": {
+      "professional": "专业",
+      "professionalDesc": "正式、准确，适合工作汇报与业务沟通",
+      "friendly": "友好",
+      "friendlyDesc": "自然亲切，适合日常交流与引导说明",
+      "concise": "简洁",
+      "conciseDesc": "直奔主题，适合快速获取结论与步骤"
+    },
+    "scenes": {
+      "general": "通用",
+      "generalDesc": "适用于大多数管理后台问答场景",
+      "coding": "编程",
+      "codingDesc": "偏向代码解释、调试建议与技术方案",
+      "writing": "写作",
+      "writingDesc": "偏向文案润色、摘要生成与内容改写"
+    },
+    "outputLanguages": {
+      "zh-CN": "中文",
+      "zh-CNDesc": "以简体中文输出回复内容",
+      "en": "英文",
+      "enDesc": "以英文输出回复内容"
+    },
+    "settings": {
+      "open": "打开 AI 设置",
+      "title": "AI 偏好设置",
+      "description": "管理 AI 助手的模型、语气、场景与输出语言。",
+      "reset": "重置",
+      "save": "保存设置",
+      "fields": {
+        "modelDesc": "选择用于生成回复的默认模型。",
+        "toneDesc": "控制 AI 回复的表达风格与措辞方式。",
+        "sceneDesc": "根据当前任务类型优化回答侧重点。",
+        "outputLanguageDesc": "指定 AI 回复使用的输出语言。"
+      }
+    },
+    "share": "共享",
+    "plugins": "插件",
+    "voiceInput": "语音输入",
+    "send": "发送",
+    "inputPlaceholder": "问问 AI，Shift+Enter 换行...",
+    "defaultUserMessage": "你好",
+    "defaultAssistantMessage": "你好呀，有什么我能帮你的吗？",
+    "placeholderReply": "我已收到你的消息，后续可接入真实 AI 服务。",
+    "suggestions": {
+      "introduceYourself": "你能介绍一下自己吗？",
+      "summarizePage": "帮我总结一下当前页面内容",
+      "helpWithTask": "我接下来应该做什么？"
+    }
   }
 }

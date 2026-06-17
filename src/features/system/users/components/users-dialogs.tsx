@@ -3,11 +3,11 @@ import { z } from 'zod'
 import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { type RoleSummaryVO, type DataScopeType } from '@/types/api'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { rolesApi } from '@/api/system'
 import { usersApi } from '@/api/users'
-import { type RoleSummaryVO, type DataScopeType } from '@/types/api'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -30,8 +30,6 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { AvatarUploadField } from '@/components/avatar-upload-field'
-import { PasswordInput } from '@/components/password-input'
 import {
   Select,
   SelectContent,
@@ -39,10 +37,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { AvatarUploadField } from '@/components/avatar-upload-field'
+import { PasswordInput } from '@/components/password-input'
 import { isSuperAdminUser } from '../utils'
-import { useUsers } from './users-provider'
 import { UserDataScopeDialogContent } from './user-data-scope-dialog-content'
 import { UserOrgFormFields } from './user-org-fields'
+import { useUsers } from './users-provider'
 
 const phoneSchema = (message: string) =>
   z.union([z.literal(''), z.string().regex(/^1[3-9]\d{9}$/, message)])
@@ -70,9 +70,7 @@ function createEditSchema(t: (key: string) => string) {
   })
 }
 
-function createResetPasswordSchema(
-  passwordMismatchMessage: string
-) {
+function createResetPasswordSchema(passwordMismatchMessage: string) {
   return z
     .object({
       newPassword: z.string().min(8).max(128),
@@ -141,7 +139,8 @@ export function UsersDialogs() {
   const createSchema = useMemo(() => createCreateSchema(t), [t])
   const editSchema = useMemo(() => createEditSchema(t), [t])
   const resetPasswordSchema = useMemo(
-    () => createResetPasswordSchema(t('system:users.validation.passwordMismatch')),
+    () =>
+      createResetPasswordSchema(t('system:users.validation.passwordMismatch')),
     [t]
   )
 
@@ -195,7 +194,7 @@ export function UsersDialogs() {
           status: userDetail.status,
           phone: userDetail.phone ?? '',
           departmentId: userDetail.department?.id ?? null,
-          positionIds: userDetail.positions.map((p) => p.id),
+          positionIds: userDetail.positions?.map((p) => p.id) ?? [],
         }
       : undefined,
   })
@@ -203,7 +202,7 @@ export function UsersDialogs() {
   const initialRoleIds = useMemo(() => {
     if (!userDetail) return []
     return roles
-      .filter((role) => userDetail.roleCodes.includes(role.roleCode))
+      .filter((role) => userDetail.roleCodes?.includes(role.roleCode))
       .map((role) => role.id)
   }, [userDetail, roles])
 
@@ -347,10 +346,7 @@ export function UsersDialogs() {
     name: 'nickname',
   })
   const editDisplayName =
-    editNickname?.trim() ||
-    currentRow?.nickname ||
-    currentRow?.username ||
-    '?'
+    editNickname?.trim() || currentRow?.nickname || currentRow?.username || '?'
 
   return (
     <>
@@ -377,7 +373,9 @@ export function UsersDialogs() {
                     <FormLabel>{t('system:users.dialogs.username')}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t('system:users.dialogs.usernamePlaceholder')}
+                        placeholder={t(
+                          'system:users.dialogs.usernamePlaceholder'
+                        )}
                         autoComplete='off'
                         {...field}
                       />
@@ -393,7 +391,11 @@ export function UsersDialogs() {
                   <FormItem>
                     <FormLabel>{t('system:users.dialogs.password')}</FormLabel>
                     <FormControl>
-                      <Input type='password' autoComplete='new-password' {...field} />
+                      <Input
+                        type='password'
+                        autoComplete='new-password'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -583,7 +585,9 @@ export function UsersDialogs() {
       <Dialog open={open === 'roles'} onOpenChange={() => setOpen(null)}>
         <DialogContent className='sm:max-w-lg'>
           <DialogHeader>
-            <DialogTitle>{t('system:users.dialogs.assignRolesTitle')}</DialogTitle>
+            <DialogTitle>
+              {t('system:users.dialogs.assignRolesTitle')}
+            </DialogTitle>
             <DialogDescription>
               {t('system:users.dialogs.assignRolesDesc', {
                 name: currentRow?.nickname || currentRow?.username || '',
@@ -606,7 +610,9 @@ export function UsersDialogs() {
       <Dialog open={open === 'dataScope'} onOpenChange={() => setOpen(null)}>
         <DialogContent className='sm:max-w-lg'>
           <DialogHeader>
-            <DialogTitle>{t('system:users.dialogs.assignDataScopeTitle')}</DialogTitle>
+            <DialogTitle>
+              {t('system:users.dialogs.assignDataScopeTitle')}
+            </DialogTitle>
             <DialogDescription>
               {t('system:users.dialogs.assignDataScopeDesc', {
                 name: currentRow?.nickname || currentRow?.username || '',
@@ -656,10 +662,7 @@ export function UsersDialogs() {
                       {t('system:users.dialogs.newPassword')}
                     </FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        autoComplete='new-password'
-                        {...field}
-                      />
+                      <PasswordInput autoComplete='new-password' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -674,10 +677,7 @@ export function UsersDialogs() {
                       {t('system:users.dialogs.confirmPassword')}
                     </FormLabel>
                     <FormControl>
-                      <PasswordInput
-                        autoComplete='new-password'
-                        {...field}
-                      />
+                      <PasswordInput autoComplete='new-password' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

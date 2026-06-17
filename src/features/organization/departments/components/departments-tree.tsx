@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { type DepartmentTreeVO } from '@/types/api'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { departmentsApi } from '@/api/departments'
-import { type DepartmentTreeVO } from '@/types/api'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -97,9 +97,7 @@ function TreeNode({ node, depth, expanded, onToggle }: TreeNodeProps) {
         <TableCell className='text-center'>{node.sortOrder}</TableCell>
         <TableCell>
           <Badge variant={node.status === 1 ? 'default' : 'secondary'}>
-            {node.status === 1
-              ? t('columns.active')
-              : t('columns.inactive')}
+            {node.status === 1 ? t('columns.active') : t('columns.inactive')}
           </Badge>
         </TableCell>
         <TableCell className='text-end'>
@@ -130,10 +128,7 @@ export function DepartmentsTree() {
     queryFn: () => departmentsApi.tree(),
   })
 
-  const filtered = useMemo(
-    () => filterTree(data, keyword),
-    [data, keyword]
-  )
+  const filtered = useMemo(() => filterTree(data, keyword), [data, keyword])
 
   const [expanded, setExpanded] = useState<Set<string>>(() => new Set())
 

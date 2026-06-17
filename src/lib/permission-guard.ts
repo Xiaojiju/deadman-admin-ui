@@ -1,7 +1,7 @@
 import { redirect } from '@tanstack/react-router'
-import { type PermissionInput } from '@/constants/permissions'
-import { getRouteRequiredPermission } from '@/lib/route-permissions'
 import { useAuthStore } from '@/stores/auth-store'
+import { getRouteRequiredPermission } from '@/lib/route-permissions'
+import { type PermissionInput } from '@/constants/permissions'
 
 const UNAUTHORIZED_PATH = '/401'
 

@@ -1,6 +1,7 @@
 {
   "sidebar": {
     "general": "General",
+    "overview": "Overview",
     "organization": "Organization",
     "system": "System",
     "other": "Other",
@@ -91,5 +92,91 @@
     "directionRtl": "Right to Left",
     "selectOption": "Select {{label}}",
     "optionPreview": "{{label}} option preview"
+  },
+  "aiChat": {
+    "open": "Open AI assistant",
+    "close": "Close",
+    "expand": "Expand",
+    "history": "History",
+    "newChat": "New chat",
+    "newChatTitle": "New chat",
+    "backToChat": "Back to chat",
+    "emptyHistory": "No chat history yet",
+    "userFallback": "Me",
+    "copy": "Copy",
+    "copySuccess": "Copied to clipboard",
+    "copyFailed": "Copy failed, please try again",
+    "more": "More",
+    "speak": "Read aloud",
+    "regenerate": "Regenerate",
+    "thumbsUp": "Helpful",
+    "thumbsDown": "Not helpful",
+    "thinking": "Thinking",
+    "thinkingInProgress": "Thinking…",
+    "thinkingProcess": "Thinking process",
+    "webSearch": "Web",
+    "attachFile": "Attach file",
+    "removeAttachment": "Remove attachment",
+    "sentWithAttachments": "(Attachments)",
+    "model": "Model",
+    "tone": "Tone",
+    "scene": "Scene",
+    "outputLanguage": "Output language",
+    "models": {
+      "gpt-4o": "GPT-4o",
+      "gpt-4oDesc": "Best overall capability for complex analysis and chat",
+      "gpt-4o-mini": "GPT-4o Mini",
+      "gpt-4o-miniDesc": "Faster responses for everyday Q&A and light tasks",
+      "claude-sonnet": "Claude Sonnet",
+      "claude-sonnetDesc": "Strong long-context understanding for docs and writing"
+    },
+    "tones": {
+      "professional": "Professional",
+      "professionalDesc": "Formal and precise, suited for work and business",
+      "friendly": "Friendly",
+      "friendlyDesc": "Warm and approachable for daily conversation",
+      "concise": "Concise",
+      "conciseDesc": "Direct and to the point for quick answers"
+    },
+    "scenes": {
+      "general": "General",
+      "generalDesc": "Works well for most admin dashboard questions",
+      "coding": "Coding",
+      "codingDesc": "Focused on code explanation, debugging, and tech plans",
+      "writing": "Writing",
+      "writingDesc": "Focused on drafting, summarizing, and rewriting content"
+    },
+    "outputLanguages": {
+      "zh-CN": "Chinese",
+      "zh-CNDesc": "Reply in Simplified Chinese",
+      "en": "English",
+      "enDesc": "Reply in English"
+    },
+    "settings": {
+      "open": "Open AI settings",
+      "title": "AI Preferences",
+      "description": "Manage your AI assistant model, tone, scene, and output language.",
+      "reset": "Reset",
+      "save": "Save Preferences",
+      "fields": {
+        "modelDesc": "Choose the default model used to generate responses.",
+        "toneDesc": "Control how the assistant phrases and structures replies.",
+        "sceneDesc": "Optimize answers for your current task type.",
+        "outputLanguageDesc": "Set the language used in AI responses."
+      }
+    },
+    "share": "Share",
+    "plugins": "Plugins",
+    "voiceInput": "Voice input",
+    "send": "Send",
+    "inputPlaceholder": "Ask AI, Shift+Enter for new line...",
+    "defaultUserMessage": "Hello",
+    "defaultAssistantMessage": "Hi! How can I help you today?",
+    "placeholderReply": "Got your message. Connect a real AI service here later.",
+    "suggestions": {
+      "introduceYourself": "Can you introduce yourself?",
+      "summarizePage": "Summarize the current page for me",
+      "helpWithTask": "What should I do next?"
+    }
   }
 }

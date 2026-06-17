@@ -1,8 +1,8 @@
 import { Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { cn } from '@/lib/utils'
 import { COLOR_THEMES } from '@/constants/color-themes'
 import { useColorTheme } from '@/context/color-theme-provider'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
 type ColorThemeSwitcherProps = {

@@ -25,6 +25,7 @@ import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
+import { Route as authSignInWechatBindRouteImport } from './routes/(auth)/sign-in/wechat-bind'
 import { Route as AuthenticatedSystemUsersIndexRouteImport } from './routes/_authenticated/system/users/index'
 import { Route as AuthenticatedSystemRolesIndexRouteImport } from './routes/_authenticated/system/roles/index'
 import { Route as AuthenticatedSystemPermissionsIndexRouteImport } from './routes/_authenticated/system/permissions/index'
@@ -32,6 +33,7 @@ import { Route as AuthenticatedOrganizationPositionsIndexRouteImport } from './r
 import { Route as AuthenticatedOrganizationDepartmentsIndexRouteImport } from './routes/_authenticated/organization/departments/index'
 import { Route as AuthenticatedNotificationsInboxIndexRouteImport } from './routes/_authenticated/notifications/inbox/index'
 import { Route as AuthenticatedClientUsersIndexRouteImport } from './routes/_authenticated/client/users/index'
+import { Route as authAuthWechatCallbackRouteImport } from './routes/(auth)/auth/wechat/callback'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -120,6 +122,11 @@ const AuthenticatedSettingsAccountRoute =
     path: '/account',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const authSignInWechatBindRoute = authSignInWechatBindRouteImport.update({
+  id: '/wechat-bind',
+  path: '/wechat-bind',
+  getParentRoute: () => authSignInRoute,
+} as any)
 const AuthenticatedSystemUsersIndexRoute =
   AuthenticatedSystemUsersIndexRouteImport.update({
     id: '/system/users/',
@@ -162,16 +169,22 @@ const AuthenticatedClientUsersIndexRoute =
     path: '/client/users/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const authAuthWechatCallbackRoute = authAuthWechatCallbackRouteImport.update({
+  id: '/(auth)/auth/wechat/callback',
+  path: '/auth/wechat/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
-  '/sign-in': typeof authSignInRoute
+  '/sign-in': typeof authSignInRouteWithChildren
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
+  '/sign-in/wechat-bind': typeof authSignInWechatBindRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -179,6 +192,7 @@ export interface FileRoutesByFullPath {
   '/settings/password': typeof AuthenticatedSettingsPasswordRoute
   '/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
+  '/auth/wechat/callback': typeof authAuthWechatCallbackRoute
   '/client/users/': typeof AuthenticatedClientUsersIndexRoute
   '/notifications/inbox/': typeof AuthenticatedNotificationsInboxIndexRoute
   '/organization/departments/': typeof AuthenticatedOrganizationDepartmentsIndexRoute
@@ -188,13 +202,14 @@ export interface FileRoutesByFullPath {
   '/system/users/': typeof AuthenticatedSystemUsersIndexRoute
 }
 export interface FileRoutesByTo {
-  '/sign-in': typeof authSignInRoute
+  '/sign-in': typeof authSignInRouteWithChildren
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/': typeof AuthenticatedIndexRoute
+  '/sign-in/wechat-bind': typeof authSignInWechatBindRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -202,6 +217,7 @@ export interface FileRoutesByTo {
   '/settings/password': typeof AuthenticatedSettingsPasswordRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
+  '/auth/wechat/callback': typeof authAuthWechatCallbackRoute
   '/client/users': typeof AuthenticatedClientUsersIndexRoute
   '/notifications/inbox': typeof AuthenticatedNotificationsInboxIndexRoute
   '/organization/departments': typeof AuthenticatedOrganizationDepartmentsIndexRoute
@@ -214,13 +230,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
-  '/(auth)/sign-in': typeof authSignInRoute
+  '/(auth)/sign-in': typeof authSignInRouteWithChildren
   '/(errors)/401': typeof errors401Route
   '/(errors)/403': typeof errors403Route
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/(auth)/sign-in/wechat-bind': typeof authSignInWechatBindRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -228,6 +245,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/password': typeof AuthenticatedSettingsPasswordRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
+  '/(auth)/auth/wechat/callback': typeof authAuthWechatCallbackRoute
   '/_authenticated/client/users/': typeof AuthenticatedClientUsersIndexRoute
   '/_authenticated/notifications/inbox/': typeof AuthenticatedNotificationsInboxIndexRoute
   '/_authenticated/organization/departments/': typeof AuthenticatedOrganizationDepartmentsIndexRoute
@@ -247,6 +265,7 @@ export interface FileRouteTypes {
     | '/404'
     | '/500'
     | '/503'
+    | '/sign-in/wechat-bind'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -254,6 +273,7 @@ export interface FileRouteTypes {
     | '/settings/password'
     | '/help-center/'
     | '/settings/'
+    | '/auth/wechat/callback'
     | '/client/users/'
     | '/notifications/inbox/'
     | '/organization/departments/'
@@ -270,6 +290,7 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/'
+    | '/sign-in/wechat-bind'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -277,6 +298,7 @@ export interface FileRouteTypes {
     | '/settings/password'
     | '/help-center'
     | '/settings'
+    | '/auth/wechat/callback'
     | '/client/users'
     | '/notifications/inbox'
     | '/organization/departments'
@@ -295,6 +317,7 @@ export interface FileRouteTypes {
     | '/(errors)/500'
     | '/(errors)/503'
     | '/_authenticated/'
+    | '/(auth)/sign-in/wechat-bind'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
@@ -302,6 +325,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/password'
     | '/_authenticated/help-center/'
     | '/_authenticated/settings/'
+    | '/(auth)/auth/wechat/callback'
     | '/_authenticated/client/users/'
     | '/_authenticated/notifications/inbox/'
     | '/_authenticated/organization/departments/'
@@ -313,12 +337,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  authSignInRoute: typeof authSignInRoute
+  authSignInRoute: typeof authSignInRouteWithChildren
   errors401Route: typeof errors401Route
   errors403Route: typeof errors403Route
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
+  authAuthWechatCallbackRoute: typeof authAuthWechatCallbackRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -435,6 +460,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsAccountRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/(auth)/sign-in/wechat-bind': {
+      id: '/(auth)/sign-in/wechat-bind'
+      path: '/wechat-bind'
+      fullPath: '/sign-in/wechat-bind'
+      preLoaderRoute: typeof authSignInWechatBindRouteImport
+      parentRoute: typeof authSignInRoute
+    }
     '/_authenticated/system/users/': {
       id: '/_authenticated/system/users/'
       path: '/system/users'
@@ -483,6 +515,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/client/users/'
       preLoaderRoute: typeof AuthenticatedClientUsersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/(auth)/auth/wechat/callback': {
+      id: '/(auth)/auth/wechat/callback'
+      path: '/auth/wechat/callback'
+      fullPath: '/auth/wechat/callback'
+      preLoaderRoute: typeof authAuthWechatCallbackRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -545,14 +584,27 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
 const AuthenticatedRouteRouteWithChildren =
   AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
+interface authSignInRouteChildren {
+  authSignInWechatBindRoute: typeof authSignInWechatBindRoute
+}
+
+const authSignInRouteChildren: authSignInRouteChildren = {
+  authSignInWechatBindRoute: authSignInWechatBindRoute,
+}
+
+const authSignInRouteWithChildren = authSignInRoute._addFileChildren(
+  authSignInRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
-  authSignInRoute: authSignInRoute,
+  authSignInRoute: authSignInRouteWithChildren,
   errors401Route: errors401Route,
   errors403Route: errors403Route,
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
+  authAuthWechatCallbackRoute: authAuthWechatCallbackRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

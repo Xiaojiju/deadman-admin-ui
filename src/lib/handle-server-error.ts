@@ -1,7 +1,7 @@
-import i18n from '@/i18n'
-import { ApiError } from '@/lib/http/api-error'
 import { AxiosError } from 'axios'
+import i18n from '@/i18n'
 import { toast } from 'sonner'
+import { ApiError } from '@/lib/http/api-error'
 
 export function handleServerError(error: unknown) {
   if (import.meta.env.DEV) {
@@ -21,7 +21,9 @@ export function handleServerError(error: unknown) {
   }
 
   if (error instanceof AxiosError) {
-    const data = error.response?.data as { msg?: string; title?: string } | undefined
+    const data = error.response?.data as
+      | { msg?: string; title?: string }
+      | undefined
     const msg = data?.msg
     const title = data?.title
     if (typeof msg === 'string' && msg.length > 0) {

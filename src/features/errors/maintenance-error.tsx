@@ -1,7 +1,5 @@
 import { ErrorPage } from './error-page'
 
 export function MaintenanceError() {
-  return (
-    <ErrorPage code='503' titleKey='503.title' descKey='503.desc' />
-  )
+  return <ErrorPage code='503' titleKey='503.title' descKey='503.desc' />
 }

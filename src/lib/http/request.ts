@@ -3,9 +3,7 @@ import { type ApiResult } from '@/types/api'
 import { ApiError } from './api-error'
 import { httpClient } from './client'
 
-async function unwrap<T>(
-  promise: Promise<{ data: ApiResult<T> }>
-): Promise<T> {
+async function unwrap<T>(promise: Promise<{ data: ApiResult<T> }>): Promise<T> {
   const { data } = await promise
   if (data.code !== 0) {
     throw new ApiError(data.msg || 'Request failed', data.code)
@@ -25,7 +23,11 @@ export function post<T>(
   return unwrap<T>(httpClient.post(url, body, config))
 }
 
-export function postForm<T>(url: string, formData: FormData, config?: AxiosRequestConfig) {
+export function postForm<T>(
+  url: string,
+  formData: FormData,
+  config?: AxiosRequestConfig
+) {
   return unwrap<T>(httpClient.post(url, formData, config))
 }
 

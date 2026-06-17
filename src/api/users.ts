@@ -1,4 +1,3 @@
-import { get, post, put, del } from '@/lib/http/request'
 import {
   type CreateUserRequest,
   type PageVO,
@@ -11,6 +10,7 @@ import {
   type DataScopeVO,
   type ResetUserPasswordRequest,
 } from '@/types/api'
+import { get, post, put, del } from '@/lib/http/request'
 
 export const usersApi = {
   page(params: UserAdminPageQuery) {

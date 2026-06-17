@@ -1,4 +1,4 @@
-import { clearCookies } from '@/test-utils/cookies'
+import { clearSessionStorage } from '@/test-utils/session-storage'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 async function importAuthStore() {
@@ -18,7 +18,7 @@ const sampleUser = {
 
 describe('useAuthStore', () => {
   beforeEach(() => {
-    clearCookies()
+    clearSessionStorage()
     vi.resetModules()
   })
 

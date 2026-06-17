@@ -1,5 +1,5 @@
-import { del, get, postForm } from '@/lib/http/request'
 import { type FileMetadataVO } from '@/types/api'
+import { del, get, postForm } from '@/lib/http/request'
 
 type FileUploadOptions = {
   bizType?: string

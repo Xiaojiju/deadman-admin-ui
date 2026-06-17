@@ -61,7 +61,9 @@ export function DataTablePagination<TData>({
               ))}
             </SelectContent>
           </Select>
-          <p className='hidden text-sm font-medium sm:block'>{t('rowsPerPage')}</p>
+          <p className='hidden text-sm font-medium sm:block'>
+            {t('rowsPerPage')}
+          </p>
         </div>
       </div>
 

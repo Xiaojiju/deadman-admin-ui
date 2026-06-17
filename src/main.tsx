@@ -1,4 +1,3 @@
-import i18n from './i18n'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { AxiosError } from 'axios'
@@ -12,10 +11,11 @@ import { toast } from 'sonner'
 import { useAuthStore } from '@/stores/auth-store'
 import { handleServerError } from '@/lib/handle-server-error'
 import { ColorThemeProvider } from './context/color-theme-provider'
-import { ToastPositionProvider } from './context/toast-position-provider'
 import { DirectionProvider } from './context/direction-provider'
 import { FontProvider } from './context/font-provider'
 import { ThemeProvider } from './context/theme-provider'
+import { ToastPositionProvider } from './context/toast-position-provider'
+import i18n from './i18n'
 // Generated Routes
 import { routeTree } from './routeTree.gen'
 // Styles

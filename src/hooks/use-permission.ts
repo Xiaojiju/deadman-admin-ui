@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { type PermissionInput } from '@/constants/permissions'
-import { hasPermission } from '@/lib/permissions'
 import { useAuthStore } from '@/stores/auth-store'
+import { hasPermission } from '@/lib/permissions'
+import { type PermissionInput } from '@/constants/permissions'
 
 /**
  * 权限校验 hook。

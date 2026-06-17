@@ -8,10 +8,38 @@ export type ApiResult<T = unknown> = {
 
 export type AuthTokenVO = {
   accessToken: string
+  refreshToken?: string
   tokenType: string
   expiresIn: number
+  refreshExpiresIn?: number
   userCode: string
   nickname: string
+}
+
+export type WechatWebInitiateVO = {
+  loginKind: 'wechat-web'
+  authorizeUrl: string
+  state: string
+  stateExpiresInSeconds: number
+}
+
+export type WechatWebLoginRequest = {
+  code: string
+  state: string
+}
+
+export type WechatPendingBindVO = {
+  bindToken: string
+  expiresIn: number
+  needBind: true
+}
+
+export type AdminWechatWebLoginResult = AuthTokenVO | WechatPendingBindVO
+
+export type WechatWebBindRequest = {
+  bindToken: string
+  username: string
+  password: string
 }
 
 export type LoginRequest = {
@@ -120,9 +148,9 @@ export type UserAdminSummaryVO = {
   avatar: string | null
   phone: string | null
   department: OrgRefVO | null
-  positions: OrgRefVO[]
+  positions?: OrgRefVO[]
   status: number
-  roleCodes: string[]
+  roleCodes?: string[]
   createTime: string
 }
 

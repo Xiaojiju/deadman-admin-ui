@@ -1,5 +1,3 @@
-import { get, post } from '@/lib/http/request'
-import { normalizeUnreadCount } from '@/lib/unread-count'
 import {
   type NotificationInboxPageQuery,
   type NotificationInboxVO,
@@ -9,6 +7,8 @@ import {
   type PageVO,
   type SendNotificationRequest,
 } from '@/types/api'
+import { get, post } from '@/lib/http/request'
+import { normalizeUnreadCount } from '@/lib/unread-count'
 
 export const notificationsApi = {
   pageInbox(params: NotificationInboxPageQuery) {

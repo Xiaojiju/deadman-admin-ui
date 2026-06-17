@@ -47,8 +47,7 @@ export function UsersTable() {
     return () => window.clearTimeout(timer)
   }, [keyword])
 
-  const status =
-    statusFilter === 'all' ? undefined : Number(statusFilter)
+  const status = statusFilter === 'all' ? undefined : Number(statusFilter)
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: [
@@ -101,8 +100,12 @@ export function UsersTable() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value='all'>{t('system:users.statusAll')}</SelectItem>
-            <SelectItem value='1'>{t('system:users.columns.active')}</SelectItem>
-            <SelectItem value='0'>{t('system:users.columns.inactive')}</SelectItem>
+            <SelectItem value='1'>
+              {t('system:users.columns.active')}
+            </SelectItem>
+            <SelectItem value='0'>
+              {t('system:users.columns.inactive')}
+            </SelectItem>
           </SelectContent>
         </Select>
         {(searchKeyword || statusFilter !== 'all') && (

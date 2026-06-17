@@ -1,11 +1,10 @@
 import { useMemo } from 'react'
 import { type ColumnDef } from '@tanstack/react-table'
+import { type RoleSummaryVO } from '@/types/api'
 import { MoreHorizontal, Pencil, Shield, Trash2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { PERMISSIONS } from '@/constants/permissions'
-import { type RoleSummaryVO } from '@/types/api'
 import { usePermission } from '@/hooks/use-permission'
-import { PermissionGate } from '@/components/permission'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -16,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '@/components/data-table'
+import { PermissionGate } from '@/components/permission'
 import { useRoles } from './roles-provider'
 
 export function useRolesColumns(): ColumnDef<RoleSummaryVO>[] {

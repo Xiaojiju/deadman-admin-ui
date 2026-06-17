@@ -27,6 +27,13 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { useRoles } from './roles-provider'
 
@@ -34,7 +41,10 @@ function createCreateSchema(t: (key: string) => string) {
   return z.object({
     roleCode: z
       .string()
-      .regex(/^[A-Z][A-Z0-9_]{1,63}$/, t('system:roles.validation.roleCodeInvalid')),
+      .regex(
+        /^[A-Z][A-Z0-9_]{1,63}$/,
+        t('system:roles.validation.roleCodeInvalid')
+      ),
     roleName: z.string().min(1).max(64),
     description: z.string().max(256).optional(),
     permissionCodes: z.array(z.string()).optional(),
@@ -94,7 +104,8 @@ export function RolesDialogs() {
     }
   }, [open, roleDetail])
 
-  const invalidate = () => queryClient.invalidateQueries({ queryKey: ['roles'] })
+  const invalidate = () =>
+    queryClient.invalidateQueries({ queryKey: ['roles'] })
 
   const createMutation = useMutation({
     mutationFn: rolesApi.create,
@@ -152,9 +163,7 @@ export function RolesDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('system:roles.toast.assignFailed')
+        e instanceof ApiError ? e.message : t('system:roles.toast.assignFailed')
       ),
   })
 
@@ -189,7 +198,9 @@ export function RolesDialogs() {
                     <FormLabel>{t('system:roles.dialogs.roleCode')}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t('system:roles.dialogs.roleCodePlaceholder')}
+                        placeholder={t(
+                          'system:roles.dialogs.roleCodePlaceholder'
+                        )}
                         {...field}
                       />
                     </FormControl>
@@ -205,7 +216,9 @@ export function RolesDialogs() {
                     <FormLabel>{t('system:roles.dialogs.roleName')}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t('system:roles.dialogs.roleNamePlaceholder')}
+                        placeholder={t(
+                          'system:roles.dialogs.roleNamePlaceholder'
+                        )}
                         {...field}
                       />
                     </FormControl>
@@ -338,9 +351,24 @@ export function RolesDialogs() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('system:roles.columns.status')}</FormLabel>
-                    <FormControl>
-                      <Input type='number' {...field} />
-                    </FormControl>
+                    <Select
+                      value={String(field.value)}
+                      onValueChange={(value) => field.onChange(Number(value))}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value='1'>
+                          {t('system:roles.columns.active')}
+                        </SelectItem>
+                        <SelectItem value='0'>
+                          {t('system:roles.columns.inactive')}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}

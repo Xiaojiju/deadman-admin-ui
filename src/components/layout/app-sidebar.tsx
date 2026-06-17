@@ -2,11 +2,11 @@ import { useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { notificationsApi } from '@/api/notifications'
+import { useAuthStore } from '@/stores/auth-store'
 import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
 import { PERMISSIONS } from '@/constants/permissions'
-import { usePermission } from '@/hooks/use-permission'
-import { useAuthStore } from '@/stores/auth-store'
 import { useLayout } from '@/context/layout-provider'
+import { usePermission } from '@/hooks/use-permission'
 import {
   Sidebar,
   SidebarContent,

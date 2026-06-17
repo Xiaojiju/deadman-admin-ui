@@ -1,5 +1,5 @@
-import { get } from '@/lib/http/request'
 import { type DeadmanComponentVO } from '@/types/api'
+import { get } from '@/lib/http/request'
 
 export const componentsApi = {
   list() {

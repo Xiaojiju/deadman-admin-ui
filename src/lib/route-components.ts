@@ -10,6 +10,8 @@ export const ROUTE_COMPONENT_MAP: Record<string, string> = {
   '/client/users': DEADMAN_COMPONENT_CODES.CLIENT,
 }
 
-export function getRouteRequiredComponent(pathname: string): string | undefined {
+export function getRouteRequiredComponent(
+  pathname: string
+): string | undefined {
   return ROUTE_COMPONENT_MAP[normalizeRoutePath(pathname)]
 }

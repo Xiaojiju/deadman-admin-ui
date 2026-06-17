@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import useDialogState from '@/hooks/use-dialog-state'
 import { type DepartmentTreeVO } from '@/types/api'
+import useDialogState from '@/hooks/use-dialog-state'
 
 type DepartmentsDialogType = 'create' | 'createChild' | 'edit' | 'delete'
 

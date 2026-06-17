@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { permissionsApi } from '@/api/system'
-import { PageLayout } from '@/components/layout/page-layout'
-import { Main } from '@/components/layout/main'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -12,6 +10,8 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Main } from '@/components/layout/main'
+import { PageLayout } from '@/components/layout/page-layout'
 
 export function Permissions() {
   const { t } = useTranslation(['system', 'common'])

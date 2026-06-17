@@ -1,10 +1,10 @@
 import { toast } from 'sonner'
-import { InboxNotificationToast } from '@/components/toast/inbox-notification-toast'
 import {
   type AppToastContext,
   type AppToastPayload,
   type InboxNotificationToastPayload,
 } from '@/lib/toast/types'
+import { InboxNotificationToast } from '@/components/toast/inbox-notification-toast'
 
 const INBOX_NOTIFICATION_TOAST_DURATION_MS = 8_000
 const CONTENT_PREVIEW_LENGTH = 120
@@ -43,7 +43,10 @@ function showInboxNotificationToast(
   )
 }
 
-export function showAppToast(payload: AppToastPayload, ctx: AppToastContext = {}) {
+export function showAppToast(
+  payload: AppToastPayload,
+  ctx: AppToastContext = {}
+) {
   switch (payload.type) {
     case 'inbox-notification':
       showInboxNotificationToast(payload, ctx)

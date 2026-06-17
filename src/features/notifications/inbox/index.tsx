@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
+  type NotificationInboxVO,
+  type NotificationSentVO,
+  type NotificationTargetType,
+} from '@/types/api'
+import {
   ArrowLeft,
   CheckCheck,
   Edit,
@@ -14,25 +19,20 @@ import {
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { notificationsApi } from '@/api/notifications'
+import { formatUnreadBadge } from '@/lib/format-unread-badge'
+import { ApiError } from '@/lib/http/api-error'
+import { cn } from '@/lib/utils'
 import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
 import { PERMISSIONS } from '@/constants/permissions'
 import { usePermission } from '@/hooks/use-permission'
-import { ApiError } from '@/lib/http/api-error'
-import { formatUnreadBadge } from '@/lib/format-unread-badge'
-import { cn } from '@/lib/utils'
-import {
-  type NotificationInboxVO,
-  type NotificationSentVO,
-  type NotificationTargetType,
-} from '@/types/api'
-import { PageLayout } from '@/components/layout/page-layout'
-import { Main } from '@/components/layout/main'
-import { PermissionGate } from '@/components/permission'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Main } from '@/components/layout/main'
+import { PageLayout } from '@/components/layout/page-layout'
+import { PermissionGate } from '@/components/permission'
 import { SendNotificationDialog } from '../components/send-notification-dialog'
 import { formatNotificationDateTime } from '../utils/format-date-time'
 
@@ -71,9 +71,8 @@ export function NotificationInbox() {
   const [sentKeyword, setSentKeyword] = useState('')
   const [sentSearch, setSentSearch] = useState('')
 
-  const [selectedInbox, setSelectedInbox] = useState<NotificationInboxVO | null>(
-    null
-  )
+  const [selectedInbox, setSelectedInbox] =
+    useState<NotificationInboxVO | null>(null)
   const [selectedSent, setSelectedSent] = useState<NotificationSentVO | null>(
     null
   )
@@ -175,7 +174,9 @@ export function NotificationInbox() {
       toast.success(t('notification:inbox.toast.markedAllRead'))
       invalidateInbox()
       setSelectedInbox((prev) =>
-        prev ? { ...prev, readStatus: 1, readTime: new Date().toISOString() } : prev
+        prev
+          ? { ...prev, readStatus: 1, readTime: new Date().toISOString() }
+          : prev
       )
     },
     onError: (error) => {
@@ -307,7 +308,9 @@ export function NotificationInbox() {
                 <>
                   <Tabs
                     value={readFilter}
-                    onValueChange={(v) => handleReadFilterChange(v as ReadFilter)}
+                    onValueChange={(v) =>
+                      handleReadFilterChange(v as ReadFilter)
+                    }
                     className='mb-3'
                   >
                     <TabsList className='grid w-full grid-cols-3'>
@@ -588,7 +591,7 @@ function DetailPanel({
     return (
       <div
         className={cn(
-          'absolute inset-0 start-full z-50 hidden w-full min-h-0 flex-1 flex-col overflow-hidden border bg-background shadow-xs sm:static sm:z-auto sm:flex sm:rounded-md',
+          'absolute inset-0 start-full z-50 hidden min-h-0 w-full flex-1 flex-col overflow-hidden border bg-background shadow-xs sm:static sm:z-auto sm:flex sm:rounded-md',
           mobileSelected && 'inset-s-0 flex'
         )}
       >
@@ -603,7 +606,7 @@ function DetailPanel({
               <ArrowLeft className='rtl:rotate-180' />
             </Button>
             <div className='min-w-0 space-y-2'>
-              <h2 className='text-balance text-xl font-bold leading-snug sm:text-2xl lg:text-3xl'>
+              <h2 className='text-xl leading-snug font-bold text-balance sm:text-2xl lg:text-3xl'>
                 {selectedInbox.title}
               </h2>
               <div className='flex flex-wrap items-center gap-2'>
@@ -643,7 +646,7 @@ function DetailPanel({
         </div>
         <ScrollArea className='min-h-0 flex-1 px-6 py-8'>
           <article className='mx-auto max-w-2xl space-y-6 pb-4'>
-            <div className='whitespace-pre-wrap break-words text-base leading-loose sm:text-lg'>
+            <div className='text-base leading-loose break-words whitespace-pre-wrap sm:text-lg'>
               {selectedInbox.content}
             </div>
             {selectedInbox.readTime ? (
@@ -662,7 +665,7 @@ function DetailPanel({
     return (
       <div
         className={cn(
-          'absolute inset-0 start-full z-50 hidden w-full min-h-0 flex-1 flex-col overflow-hidden border bg-background shadow-xs sm:static sm:z-auto sm:flex sm:rounded-md',
+          'absolute inset-0 start-full z-50 hidden min-h-0 w-full flex-1 flex-col overflow-hidden border bg-background shadow-xs sm:static sm:z-auto sm:flex sm:rounded-md',
           mobileSelected && 'inset-s-0 flex'
         )}
       >
@@ -676,7 +679,7 @@ function DetailPanel({
             <ArrowLeft className='rtl:rotate-180' />
           </Button>
           <div className='min-w-0 space-y-1'>
-            <h2 className='text-balance text-xl font-bold leading-snug sm:text-2xl lg:text-3xl'>
+            <h2 className='text-xl leading-snug font-bold text-balance sm:text-2xl lg:text-3xl'>
               {selectedSent.title}
             </h2>
             <p className='text-xs text-muted-foreground'>
@@ -703,10 +706,12 @@ function DetailPanel({
                 <span className='text-muted-foreground'>
                   {t('notification:sent.sentAt')}
                 </span>
-                <span>{formatNotificationDateTime(selectedSent.createTime)}</span>
+                <span>
+                  {formatNotificationDateTime(selectedSent.createTime)}
+                </span>
               </div>
             </div>
-            <div className='whitespace-pre-wrap break-words text-base leading-loose sm:text-lg'>
+            <div className='text-base leading-loose break-words whitespace-pre-wrap sm:text-lg'>
               {selectedSent.content}
             </div>
           </article>
@@ -730,7 +735,7 @@ function EmptyDetailPanel({
   return (
     <div
       className={cn(
-        'absolute inset-0 start-full z-50 hidden w-full min-h-0 flex-1 flex-col justify-center overflow-hidden rounded-md border bg-card shadow-xs sm:static sm:z-auto sm:flex'
+        'absolute inset-0 start-full z-50 hidden min-h-0 w-full flex-1 flex-col justify-center overflow-hidden rounded-md border bg-card shadow-xs sm:static sm:z-auto sm:flex'
       )}
     >
       <div className='flex flex-col items-center space-y-6 px-4'>

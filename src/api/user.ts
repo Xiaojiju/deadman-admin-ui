@@ -1,8 +1,5 @@
+import { type UpdateMyProfileRequest, type UserProfileVO } from '@/types/api'
 import { get, put } from '@/lib/http/request'
-import {
-  type UpdateMyProfileRequest,
-  type UserProfileVO,
-} from '@/types/api'
 
 export const userApi = {
   getMyProfile() {

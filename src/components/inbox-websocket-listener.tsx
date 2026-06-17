@@ -1,7 +1,7 @@
+import { useAuthStore } from '@/stores/auth-store'
+import { hasPermission } from '@/lib/permissions'
 import { PERMISSIONS } from '@/constants/permissions'
 import { useInboxWebSocket } from '@/hooks/use-inbox-websocket'
-import { hasPermission } from '@/lib/permissions'
-import { useAuthStore } from '@/stores/auth-store'
 
 function InboxWebSocketConnector() {
   useInboxWebSocket()

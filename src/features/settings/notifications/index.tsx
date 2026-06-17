@@ -11,7 +11,9 @@ export function SettingsNotifications() {
       desc={t('notifications.desc')}
     >
       <div className='space-y-3'>
-        <p className='text-sm font-medium'>{t('notifications.positionTitle')}</p>
+        <p className='text-sm font-medium'>
+          {t('notifications.positionTitle')}
+        </p>
         <p className='text-sm text-muted-foreground'>
           {t('notifications.positionDesc')}
         </p>

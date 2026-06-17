@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { type DataScopeType, type DataScopeVO } from '@/types/api'
 import { useTranslation } from 'react-i18next'
 import { departmentsApi } from '@/api/departments'
-import { type DataScopeType, type DataScopeVO } from '@/types/api'
-import { flattenDepartments } from '@/features/organization/utils/department-options'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DialogFooter } from '@/components/ui/dialog'
@@ -16,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { flattenDepartments } from '@/features/organization/utils/department-options'
 
 const DATA_SCOPE_TYPES: DataScopeType[] = [
   'ALL',

@@ -1,10 +1,10 @@
-import { del, get, post, put } from '@/lib/http/request'
 import {
   type CreateDepartmentRequest,
   type DepartmentTreeVO,
   type DepartmentVO,
   type UpdateDepartmentRequest,
 } from '@/types/api'
+import { del, get, post, put } from '@/lib/http/request'
 
 export const departmentsApi = {
   list() {

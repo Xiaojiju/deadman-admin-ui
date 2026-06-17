@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { type UserAdminSummaryVO } from '@/types/api'
 import { Check, Loader2, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
@@ -10,11 +11,10 @@ import { departmentsApi } from '@/api/departments'
 import { notificationsApi } from '@/api/notifications'
 import { positionsApi } from '@/api/positions'
 import { usersApi } from '@/api/users'
-import { flattenDepartments } from '@/features/organization/utils/department-options'
-import { ApiError } from '@/lib/http/api-error'
 import { resolveFileAccessUrl } from '@/lib/files/resolve-file-url'
+import { ApiError } from '@/lib/http/api-error'
 import { getDisplayNameInitials } from '@/lib/utils'
-import { type UserAdminSummaryVO } from '@/types/api'
+import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -54,7 +54,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
+import { flattenDepartments } from '@/features/organization/utils/department-options'
 
 type SendNotificationDialogProps = {
   open: boolean
@@ -64,12 +64,11 @@ type SendNotificationDialogProps = {
 type TargetTypeValue = '1' | '2' | '3' | '4'
 
 function formatUserOrg(user: UserAdminSummaryVO) {
+  const positions = user.positions ?? []
   return {
     department: user.department?.name ?? '—',
     positions:
-      user.positions.length > 0
-        ? user.positions.map((p) => p.name).join('、')
-        : '—',
+      positions.length > 0 ? positions.map((p) => p.name).join('、') : '—',
   }
 }
 
@@ -142,7 +141,9 @@ export function SendNotificationDialog({
     () =>
       z
         .object({
-          title: z.string().min(1, t('notification:send.validation.titleRequired')),
+          title: z
+            .string()
+            .min(1, t('notification:send.validation.titleRequired')),
           content: z
             .string()
             .min(1, t('notification:send.validation.contentRequired')),
@@ -268,11 +269,12 @@ export function SendNotificationDialog({
     })
   }
 
-  const selectedUserIds = useWatch({
-    control: form.control,
-    name: 'userIds',
-    defaultValue: [],
-  }) ?? []
+  const selectedUserIds =
+    useWatch({
+      control: form.control,
+      name: 'userIds',
+      defaultValue: [],
+    }) ?? []
 
   const toggleUser = (user: UserAdminSummaryVO) => {
     const current = form.getValues('userIds') ?? []
@@ -327,7 +329,9 @@ export function SendNotificationDialog({
                   name='title'
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{t('notification:send.fields.title')}</FormLabel>
+                      <FormLabel>
+                        {t('notification:send.fields.title')}
+                      </FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
@@ -405,7 +409,9 @@ export function SendNotificationDialog({
                     name='userIds'
                     render={() => (
                       <FormItem>
-                        <FormLabel>{t('notification:send.fields.users')}</FormLabel>
+                        <FormLabel>
+                          {t('notification:send.fields.users')}
+                        </FormLabel>
                         {selectedUserIds.length > 0 ? (
                           <div className='mb-3 flex flex-wrap gap-2'>
                             {selectedUserIds

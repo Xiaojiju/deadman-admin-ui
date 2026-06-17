@@ -1,15 +1,17 @@
-import { del, get, post, put } from '@/lib/http/request'
 import {
   type CreatePositionRequest,
   type PositionListQuery,
   type PositionVO,
   type UpdatePositionRequest,
 } from '@/types/api'
+import { del, get, post, put } from '@/lib/http/request'
 
 export const positionsApi = {
   list(query?: PositionListQuery) {
     return get<PositionVO[]>('/api/positions', {
-      params: query?.departmentId ? { departmentId: query.departmentId } : undefined,
+      params: query?.departmentId
+        ? { departmentId: query.departmentId }
+        : undefined,
     })
   },
 

@@ -13,7 +13,7 @@ export function Toaster({ ...props }: ToasterProps) {
       expand
       visibleToasts={6}
       gap={10}
-      className='toaster group [&_[data-sonner-toaster]]:flex [&_[data-sonner-toaster]]:flex-col [&_[data-sonner-toast]]:w-full [&_div[data-content]]:w-full'
+      className='toaster group [&_[data-sonner-toast]]:w-full [&_[data-sonner-toaster]]:flex [&_[data-sonner-toaster]]:flex-col [&_div[data-content]]:w-full'
       toastOptions={{
         classNames: {
           toast: 'w-full items-stretch',

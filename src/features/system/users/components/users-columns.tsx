@@ -1,12 +1,18 @@
 import { useMemo } from 'react'
 import { type ColumnDef } from '@tanstack/react-table'
-import { KeyRound, MoreHorizontal, Pencil, Shield, Database, Trash2 } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
-import { PERMISSIONS } from '@/constants/permissions'
 import { type UserAdminSummaryVO } from '@/types/api'
+import {
+  KeyRound,
+  MoreHorizontal,
+  Pencil,
+  Shield,
+  Database,
+  Trash2,
+} from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { resolveFileAccessUrl } from '@/lib/files/resolve-file-url'
+import { PERMISSIONS } from '@/constants/permissions'
 import { usePermission } from '@/hooks/use-permission'
-import { PermissionGate } from '@/components/permission'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -18,8 +24,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { DataTableColumnHeader } from '@/components/data-table'
-import { useUsers } from './users-provider'
+import { PermissionGate } from '@/components/permission'
 import { isSuperAdminUser } from '../utils'
+import { useUsers } from './users-provider'
 
 export function useUsersColumns(): ColumnDef<UserAdminSummaryVO>[] {
   const { t } = useTranslation('system')
@@ -48,7 +55,9 @@ export function useUsersColumns(): ColumnDef<UserAdminSummaryVO>[] {
                 <AvatarFallback>{initials.toUpperCase()}</AvatarFallback>
               </Avatar>
               <div className='flex flex-col'>
-                <span className='font-medium'>{user.nickname || user.username}</span>
+                <span className='font-medium'>
+                  {user.nickname || user.username}
+                </span>
                 <span className='text-xs text-muted-foreground'>
                   {user.username}
                 </span>
@@ -105,7 +114,11 @@ export function useUsersColumns(): ColumnDef<UserAdminSummaryVO>[] {
           return (
             <div className='flex flex-wrap gap-1'>
               {codes.map((code) => (
-                <Badge key={code} variant='secondary' className='font-mono text-xs'>
+                <Badge
+                  key={code}
+                  variant='secondary'
+                  className='font-mono text-xs'
+                >
                   {code}
                 </Badge>
               ))}
@@ -215,10 +228,7 @@ function UserRowActions({ row }: { row: UserAdminSummaryVO }) {
             {t('users.actions.resetPassword')}
           </DropdownMenuItem>
         </PermissionGate>
-        <PermissionGate
-          permission={PERMISSIONS.USER_DELETE}
-          when={!superAdmin}
-        >
+        <PermissionGate permission={PERMISSIONS.USER_DELETE} when={!superAdmin}>
           <>
             <DropdownMenuSeparator />
             <DropdownMenuItem

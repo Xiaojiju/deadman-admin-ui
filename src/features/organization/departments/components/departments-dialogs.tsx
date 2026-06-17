@@ -3,11 +3,11 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { type DepartmentVO } from '@/types/api'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { departmentsApi } from '@/api/departments'
 import { ApiError } from '@/lib/http/api-error'
-import { type DepartmentVO } from '@/types/api'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -194,9 +194,7 @@ export function DepartmentsDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('department:toast.createFailed')
+        e instanceof ApiError ? e.message : t('department:toast.createFailed')
       ),
   })
 
@@ -211,9 +209,7 @@ export function DepartmentsDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('department:toast.updateFailed')
+        e instanceof ApiError ? e.message : t('department:toast.updateFailed')
       ),
   })
 
@@ -227,9 +223,7 @@ export function DepartmentsDialogs() {
     },
     onError: (e) =>
       toast.error(
-        e instanceof ApiError
-          ? e.message
-          : t('department:toast.deleteFailed')
+        e instanceof ApiError ? e.message : t('department:toast.deleteFailed')
       ),
   })
 

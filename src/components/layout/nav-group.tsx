@@ -3,7 +3,6 @@ import { Link, useLocation } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
 import { filterByPermission } from '@/lib/permissions'
 import { usePermission } from '@/hooks/use-permission'
-import { PermissionGate } from '@/components/permission'
 import {
   Collapsible,
   CollapsibleContent,
@@ -20,6 +19,7 @@ import {
   SidebarMenuSubItem,
   useSidebar,
 } from '@/components/ui/sidebar'
+import { PermissionGate } from '@/components/permission'
 import { Badge } from '../ui/badge'
 import {
   DropdownMenu,
@@ -44,13 +44,16 @@ export function NavGroup({ title, items }: NavGroupProps) {
   const visibleItems = useMemo(
     () =>
       items.filter((item) => {
-        if (item.permission && !filterByPermission([item], permissionCodes, isSuperAdmin).length) {
+        if (
+          item.permission &&
+          !filterByPermission([item], permissionCodes, isSuperAdmin).length
+        ) {
           return false
         }
         if (item.items) {
           return (
-            filterByPermission(item.items, permissionCodes, isSuperAdmin).length >
-            0
+            filterByPermission(item.items, permissionCodes, isSuperAdmin)
+              .length > 0
           )
         }
         return true
@@ -149,16 +152,16 @@ function SidebarMenuCollapsible({
         <CollapsibleContent className='CollapsibleContent'>
           <SidebarMenuSub>
             {visibleItems.map((subItem) => (
-              <PermissionGate key={subItem.title} permission={subItem.permission}>
+              <PermissionGate
+                key={subItem.title}
+                permission={subItem.permission}
+              >
                 <SidebarMenuSubItem>
                   <SidebarMenuSubButton
                     asChild
                     isActive={checkIsActive(href, subItem)}
                   >
-                    <Link
-                      to={subItem.url}
-                      onClick={() => setOpenMobile(false)}
-                    >
+                    <Link to={subItem.url} onClick={() => setOpenMobile(false)}>
                       {subItem.icon && <subItem.icon />}
                       <span>{subItem.title}</span>
                       {subItem.badge && <NavBadge>{subItem.badge}</NavBadge>}
@@ -209,7 +212,10 @@ function SidebarMenuCollapsedDropdown({
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           {visibleItems.map((sub) => (
-            <PermissionGate key={`${sub.title}-${sub.url}`} permission={sub.permission}>
+            <PermissionGate
+              key={`${sub.title}-${sub.url}`}
+              permission={sub.permission}
+            >
               <DropdownMenuItem asChild>
                 <Link
                   to={sub.url}

@@ -36,7 +36,10 @@ export const PERMISSIONS = {
   FILE_DELETE: 'file:delete',
 } as const
 
-export type PermissionCode =
-  (typeof PERMISSIONS)[keyof typeof PERMISSIONS]
+export type PermissionCode = (typeof PERMISSIONS)[keyof typeof PERMISSIONS]
 
-export type PermissionInput = PermissionCode | PermissionCode[] | string | string[]
+export type PermissionInput =
+  | PermissionCode
+  | PermissionCode[]
+  | string
+  | string[]

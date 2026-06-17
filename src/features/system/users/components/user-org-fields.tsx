@@ -1,10 +1,9 @@
 import { useEffect, useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { type UseFormReturn } from 'react-hook-form'
+import { useQuery } from '@tanstack/react-query'
 import { type TFunction } from 'i18next'
 import { departmentsApi } from '@/api/departments'
 import { positionsApi } from '@/api/positions'
-import { flattenDepartments } from '@/features/organization/utils/department-options'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   FormControl,
@@ -22,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { flattenDepartments } from '@/features/organization/utils/department-options'
 
 type UserOrgFormFieldsProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -54,7 +54,8 @@ export function UserOrgFormFields({ form, t }: UserOrgFormFieldsProps) {
   })
 
   useEffect(() => {
-    const currentIds = (form.getValues('positionIds') as string[] | undefined) ?? []
+    const currentIds =
+      (form.getValues('positionIds') as string[] | undefined) ?? []
     const allowed = new Set(availablePositions.map((p) => p.id))
     const next = currentIds.filter((id) => allowed.has(id))
     if (next.length !== currentIds.length) {

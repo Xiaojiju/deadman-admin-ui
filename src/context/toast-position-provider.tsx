@@ -1,9 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  type ReactNode,
-} from 'react'
+import { createContext, useContext, useState, type ReactNode } from 'react'
 import {
   DEFAULT_TOAST_POSITION,
   TOAST_POSITION_STORAGE_KEY,
@@ -64,7 +59,9 @@ export function ToastPositionProvider({ children }: { children: ReactNode }) {
 export function useToastPosition() {
   const context = useContext(ToastPositionContext)
   if (!context) {
-    throw new Error('useToastPosition must be used within ToastPositionProvider')
+    throw new Error(
+      'useToastPosition must be used within ToastPositionProvider'
+    )
   }
   return context
 }

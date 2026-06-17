@@ -1,4 +1,3 @@
-import { del, get, post, put } from '@/lib/http/request'
 import {
   type AssignRolePermissionsRequest,
   type AssignUserRolesRequest,
@@ -9,6 +8,7 @@ import {
   type RoleSummaryVO,
   type UpdateRoleRequest,
 } from '@/types/api'
+import { del, get, post, put } from '@/lib/http/request'
 
 export const rolesApi = {
   list() {

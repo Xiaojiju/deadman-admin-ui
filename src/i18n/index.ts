@@ -67,7 +67,9 @@ void i18n
   })
 
 const supportedCodes = SUPPORTED_LANGUAGES.map((l) => l.code)
-if (!supportedCodes.includes(i18n.language as (typeof supportedCodes)[number])) {
+if (
+  !supportedCodes.includes(i18n.language as (typeof supportedCodes)[number])
+) {
   void i18n.changeLanguage(DEFAULT_LANGUAGE)
 }
 

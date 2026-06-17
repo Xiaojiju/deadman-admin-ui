@@ -1,17 +1,19 @@
 import axios from 'axios'
-import { useAuthStore } from '@/stores/auth-store'
+import { getAccessToken } from '@/lib/auth/token-storage'
+import { setupAuthInterceptor } from './auth-interceptor'
 import { resolveApiBaseURL } from './resolve-base-url'
 
 export const httpClient = axios.create({
   baseURL: resolveApiBaseURL(),
   timeout: 30_000,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
 httpClient.interceptors.request.use((config) => {
-  const token = useAuthStore.getState().auth.accessToken
+  const token = getAccessToken()
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   }
@@ -22,13 +24,4 @@ httpClient.interceptors.request.use((config) => {
   return config
 })
 
-httpClient.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const status = error.response?.status
-    if (status === 401) {
-      useAuthStore.getState().auth.reset()
-    }
-    return Promise.reject(error)
-  }
-)
+setupAuthInterceptor()

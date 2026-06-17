@@ -5,6 +5,7 @@ import {
   Briefcase,
   Inbox,
   KeyRound,
+  LayoutDashboard,
   Palette,
   Settings,
   Shield,
@@ -14,11 +15,11 @@ import {
   Wrench,
   Command,
 } from 'lucide-react'
-import { DEADMAN_COMPONENT_CODES } from '@/constants/components'
 import { type AuthUser } from '@/stores/auth-store'
-import { PERMISSIONS, type PermissionInput } from '@/constants/permissions'
-import { formatUnreadBadge } from '@/lib/format-unread-badge'
 import { resolveFileAccessUrl } from '@/lib/files/resolve-file-url'
+import { formatUnreadBadge } from '@/lib/format-unread-badge'
+import { DEADMAN_COMPONENT_CODES } from '@/constants/components'
+import { PERMISSIONS, type PermissionInput } from '@/constants/permissions'
 import { type NavGroup, type SidebarData } from '../types'
 
 export type NavItemConfig = {
@@ -50,6 +51,11 @@ export function getSidebarNavConfig(): NavGroupConfig[] {
     {
       titleKey: 'layout:sidebar.general',
       items: [
+        {
+          titleKey: 'layout:sidebar.overview',
+          url: '/',
+          icon: LayoutDashboard,
+        },
         {
           titleKey: 'layout:sidebar.inbox',
           url: '/notifications/inbox',
@@ -244,8 +250,7 @@ export function buildSidebarData(options: {
     user: {
       name: fallbackName,
       email: fallbackCode,
-      avatar:
-        resolveFileAccessUrl(user?.avatar) || '/avatars/shadcn.jpg',
+      avatar: resolveFileAccessUrl(user?.avatar) || '/avatars/shadcn.jpg',
     },
     brand: getSidebarBrand(t),
     navGroups,

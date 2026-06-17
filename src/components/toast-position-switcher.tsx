@@ -1,12 +1,12 @@
 import { Check } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
+import { cn } from '@/lib/utils'
 import {
   TOAST_POSITIONS,
   type ToastPositionId,
 } from '@/constants/toast-positions'
 import { useToastPosition } from '@/context/toast-position-provider'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
 const PREVIEW_POSITION_CLASS: Record<ToastPositionId, string> = {
@@ -79,7 +79,7 @@ export function ToastPositionSwitcher({
             <span className='relative w-full'>
               <PositionPreview position={item.id} />
               {selected ? (
-                <span className='absolute top-1 end-1 flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm'>
+                <span className='absolute end-1 top-1 flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm'>
                   <Check className='size-3' />
                 </span>
               ) : null}

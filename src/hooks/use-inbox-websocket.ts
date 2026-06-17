@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
-import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
+import { useAuthStore } from '@/stores/auth-store'
 import { showAppToast } from '@/lib/toast/show-app-toast'
 import { incrementUnreadCount } from '@/lib/unread-count'
 import {
@@ -10,7 +10,7 @@ import {
   type InboxNotificationPayload,
 } from '@/lib/ws/parse-inbox-ws-message'
 import { resolveInboxWebSocketURL } from '@/lib/ws/resolve-inbox-ws-url'
-import { useAuthStore } from '@/stores/auth-store'
+import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
 
 const HEARTBEAT_INTERVAL_MS = 30_000
 const PONG_TIMEOUT_MS = 10_000

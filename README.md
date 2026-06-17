@@ -4,19 +4,19 @@
 
 ## 功能概览
 
-| 模块 | 说明 |
-| --- | --- |
-| **认证** | 用户名密码登录，JWT 存 Cookie；登录后拉取用户资料、权限码、角色 |
-| **权限（RBAC）** | 路由守卫 + 侧栏/按钮级 `PermissionGate`；权限码与后端保持一致 |
-| **仪表盘** | 登录后默认首页 |
-| **站内信** | 收件箱 / 发件箱、未读角标、WebSocket 实时推送与 Toast 提醒 |
-| **组织** | 部门树、职位管理 |
-| **系统** | 管理端用户、角色、权限列表 |
-| **用户端** | 客户端用户管理（依赖服务端装配 `client` 组件） |
-| **设置** | 账户资料、头像上传、修改密码、外观、通知位置 |
-| **文件** | 头像等文件上传（`multipart/form-data`），公开直链 `/files/**` |
-| **国际化** | 简体中文（默认）、English |
-| **主题** | 浅色 / 深色、字体、RTL 布局支持 |
+| 模块             | 说明                                                            |
+| ---------------- | --------------------------------------------------------------- |
+| **认证**         | 用户名密码登录，JWT 存 Cookie；登录后拉取用户资料、权限码、角色 |
+| **权限（RBAC）** | 路由守卫 + 侧栏/按钮级 `PermissionGate`；权限码与后端保持一致   |
+| **仪表盘**       | 登录后默认首页                                                  |
+| **站内信**       | 收件箱 / 发件箱、未读角标、WebSocket 实时推送与 Toast 提醒      |
+| **组织**         | 部门树、职位管理                                                |
+| **系统**         | 管理端用户、角色、权限列表                                      |
+| **用户端**       | 客户端用户管理（依赖服务端装配 `client` 组件）                  |
+| **设置**         | 账户资料、头像上传、修改密码、外观、通知位置                    |
+| **文件**         | 头像等文件上传（`multipart/form-data`），公开直链 `/files/**`   |
+| **国际化**       | 简体中文（默认）、English                                       |
+| **主题**         | 浅色 / 深色、字体、RTL 布局支持                                 |
 
 ## 技术栈
 
@@ -51,10 +51,10 @@ pnpm dev
 
 ### 环境变量
 
-| 变量 | 说明 |
-| --- | --- |
-| `VITE_API_BASE_URL` | Axios `baseURL`。开发环境留空即可，走 Vite 代理 |
-| `VITE_API_PROXY_TARGET` | 开发代理目标，默认 `http://localhost:8080` |
+| 变量                    | 说明                                            |
+| ----------------------- | ----------------------------------------------- |
+| `VITE_API_BASE_URL`     | Axios `baseURL`。开发环境留空即可，走 Vite 代理 |
+| `VITE_API_PROXY_TARGET` | 开发代理目标，默认 `http://localhost:8080`      |
 
 开发模式下，Vite 会将以下路径代理到后端：
 
@@ -78,22 +78,22 @@ pnpm knip         # 检测未使用文件/导出
 
 ## 路由与页面
 
-| 路径 | 功能 |
-| --- | --- |
-| `/sign-in` | 登录 |
-| `/` | 仪表盘 |
-| `/notifications/inbox` | 站内信 |
-| `/organization/departments` | 部门管理 |
-| `/organization/positions` | 职位管理 |
-| `/system/users` | 管理端用户 |
-| `/system/roles` | 角色管理 |
-| `/system/permissions` | 权限列表 |
-| `/client/users` | 客户端用户（需 `client` 组件） |
-| `/settings/account` | 账户与头像 |
-| `/settings/password` | 修改密码 |
-| `/settings/appearance` | 外观 |
-| `/settings/notifications` | 通知位置 |
-| `/401` `/403` `/404` `/500` `/503` | 错误页 |
+| 路径                               | 功能                           |
+| ---------------------------------- | ------------------------------ |
+| `/sign-in`                         | 登录                           |
+| `/`                                | 仪表盘                         |
+| `/notifications/inbox`             | 站内信                         |
+| `/organization/departments`        | 部门管理                       |
+| `/organization/positions`          | 职位管理                       |
+| `/system/users`                    | 管理端用户                     |
+| `/system/roles`                    | 角色管理                       |
+| `/system/permissions`              | 权限列表                       |
+| `/client/users`                    | 客户端用户（需 `client` 组件） |
+| `/settings/account`                | 账户与头像                     |
+| `/settings/password`               | 修改密码                       |
+| `/settings/appearance`             | 外观                           |
+| `/settings/notifications`          | 通知位置                       |
+| `/401` `/403` `/404` `/500` `/503` | 错误页                         |
 
 路由定义在 `src/routes/`，页面实现放在 `src/features/<name>/`。
 

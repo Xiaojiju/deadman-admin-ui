@@ -12,6 +12,13 @@ import { useTranslation } from 'react-i18next'
 import { departmentsApi } from '@/api/departments'
 import { positionsApi } from '@/api/positions'
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
   Table,
   TableBody,
   TableCell,
@@ -19,13 +26,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { DataTablePagination, DataTableToolbar } from '@/components/data-table'
 import { usePositionsColumns } from './positions-columns'
 
@@ -33,7 +33,8 @@ type DepartmentFilter = 'all' | 'global' | string
 
 export function PositionsTable() {
   const { t } = useTranslation(['position', 'common'])
-  const [departmentFilter, setDepartmentFilter] = useState<DepartmentFilter>('all')
+  const [departmentFilter, setDepartmentFilter] =
+    useState<DepartmentFilter>('all')
 
   const { data: departments = [] } = useQuery({
     queryKey: ['departments', 'list'],
@@ -86,7 +87,9 @@ export function PositionsTable() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value='all'>{t('position:departmentAll')}</SelectItem>
-            <SelectItem value='global'>{t('position:departmentGlobal')}</SelectItem>
+            <SelectItem value='global'>
+              {t('position:departmentGlobal')}
+            </SelectItem>
             {departments.map((dept) => (
               <SelectItem key={dept.id} value={dept.id}>
                 {dept.deptName}

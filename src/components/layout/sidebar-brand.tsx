@@ -10,7 +10,11 @@ type SidebarBrandProps = {
   logo: React.ElementType
 }
 
-export function SidebarBrand({ name, description, logo: Logo }: SidebarBrandProps) {
+export function SidebarBrand({
+  name,
+  description,
+  logo: Logo,
+}: SidebarBrandProps) {
   return (
     <SidebarMenu>
       <SidebarMenuItem>

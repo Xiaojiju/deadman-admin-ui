@@ -10,6 +10,7 @@ import { rolesApi } from '@/api/system'
 import { usersApi } from '@/api/users'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
+import { LoadingButton } from '@/components/ui/loading-button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
@@ -124,9 +125,9 @@ function AssignRolesDialogContent({
         </div>
       </ScrollArea>
       <DialogFooter>
-        <Button onClick={() => onSave(selectedRoleIds)} disabled={isPending}>
+        <LoadingButton onClick={() => onSave(selectedRoleIds)} loading={isPending}>
           {saveLabel}
-        </Button>
+        </LoadingButton>
       </DialogFooter>
     </>
   )
@@ -457,9 +458,9 @@ export function UsersDialogs() {
               />
               <UserOrgFormFields form={createForm} t={t} />
               <DialogFooter>
-                <Button type='submit' disabled={createMutation.isPending}>
+                <LoadingButton type='submit' loading={createMutation.isPending}>
                   {t('common:create')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -573,9 +574,9 @@ export function UsersDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={updateMutation.isPending}>
+                <LoadingButton type='submit' loading={updateMutation.isPending}>
                   {t('common:save')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -684,12 +685,12 @@ export function UsersDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button
+                <LoadingButton
                   type='submit'
-                  disabled={resetPasswordMutation.isPending}
+                  loading={resetPasswordMutation.isPending}
                 >
                   {t('system:users.dialogs.resetPasswordSubmit')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -710,13 +711,13 @@ export function UsersDialogs() {
             <Button variant='outline' onClick={() => setOpen(null)}>
               {t('common:cancel')}
             </Button>
-            <Button
+            <LoadingButton
               variant='destructive'
               onClick={() => deleteMutation.mutate()}
-              disabled={deleteMutation.isPending}
+              loading={deleteMutation.isPending}
             >
               {t('common:delete')}
-            </Button>
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

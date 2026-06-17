@@ -4,6 +4,7 @@
   "searchPlaceholder": "输入命令或搜索…",
   "noResults": "未找到结果。",
   "loading": "加载中…",
+  "refresh": "刷新",
   "reset": "重置",
   "cancel": "取消",
   "save": "保存",

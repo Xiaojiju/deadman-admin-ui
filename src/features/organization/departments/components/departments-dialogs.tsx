@@ -9,6 +9,7 @@ import { toast } from 'sonner'
 import { departmentsApi } from '@/api/departments'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
+import { LoadingButton } from '@/components/ui/loading-button'
 import {
   Dialog,
   DialogContent,
@@ -348,9 +349,9 @@ export function DepartmentsDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={createMutation.isPending}>
+                <LoadingButton type='submit' loading={createMutation.isPending}>
                   {t('common:create')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -462,9 +463,9 @@ export function DepartmentsDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={updateMutation.isPending}>
+                <LoadingButton type='submit' loading={updateMutation.isPending}>
                   {t('common:save')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -485,13 +486,13 @@ export function DepartmentsDialogs() {
             <Button variant='outline' onClick={() => setOpen(null)}>
               {t('common:cancel')}
             </Button>
-            <Button
+            <LoadingButton
               variant='destructive'
               onClick={() => deleteMutation.mutate()}
-              disabled={deleteMutation.isPending}
+              loading={deleteMutation.isPending}
             >
               {t('common:delete')}
-            </Button>
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

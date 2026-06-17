@@ -10,6 +10,7 @@ import { departmentsApi } from '@/api/departments'
 import { positionsApi } from '@/api/positions'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
+import { LoadingButton } from '@/components/ui/loading-button'
 import {
   Dialog,
   DialogContent,
@@ -278,9 +279,9 @@ export function PositionsDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={createMutation.isPending}>
+                <LoadingButton type='submit' loading={createMutation.isPending}>
                   {t('common:create')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -392,9 +393,9 @@ export function PositionsDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={updateMutation.isPending}>
+                <LoadingButton type='submit' loading={updateMutation.isPending}>
                   {t('common:save')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -415,13 +416,13 @@ export function PositionsDialogs() {
             <Button variant='outline' onClick={() => setOpen(null)}>
               {t('common:cancel')}
             </Button>
-            <Button
+            <LoadingButton
               variant='destructive'
               onClick={() => deleteMutation.mutate()}
-              disabled={deleteMutation.isPending}
+              loading={deleteMutation.isPending}
             >
               {t('common:delete')}
-            </Button>
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { type DataScopeType, type DataScopeVO } from '@/types/api'
 import { useTranslation } from 'react-i18next'
 import { departmentsApi } from '@/api/departments'
-import { Button } from '@/components/ui/button'
+import { LoadingButton } from '@/components/ui/loading-button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DialogFooter } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
@@ -146,9 +146,9 @@ export function UserDataScopeDialogContent({
         ) : null}
       </div>
       <DialogFooter>
-        <Button onClick={handleSave} disabled={isPending}>
+        <LoadingButton onClick={handleSave} loading={isPending}>
           {saveLabel}
-        </Button>
+        </LoadingButton>
       </DialogFooter>
     </>
   )

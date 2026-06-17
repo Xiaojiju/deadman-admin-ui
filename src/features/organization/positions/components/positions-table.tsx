@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import {
-  flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  type VisibilityState,
 } from '@tanstack/react-table'
 import { useTranslation } from 'react-i18next'
 import { departmentsApi } from '@/api/departments'
@@ -18,15 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import { DataTablePagination, DataTableToolbar } from '@/components/data-table'
+import { DataTablePage, DataTableToolbar } from '@/components/data-table'
 import { usePositionsColumns } from './positions-columns'
 
 type DepartmentFilter = 'all' | 'global' | string
@@ -35,6 +27,7 @@ export function PositionsTable() {
   const { t } = useTranslation(['position', 'common'])
   const [departmentFilter, setDepartmentFilter] =
     useState<DepartmentFilter>('all')
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
 
   const { data: departments = [] } = useQuery({
     queryKey: ['departments', 'list'],
@@ -55,7 +48,7 @@ export function PositionsTable() {
     return { departmentId: departmentFilter }
   }, [departmentFilter])
 
-  const { data: rawData = [], isLoading } = useQuery({
+  const { data: rawData = [], isLoading, isFetching, refetch } = useQuery({
     queryKey: ['positions', listQuery],
     queryFn: () => positionsApi.list(listQuery),
   })
@@ -69,6 +62,8 @@ export function PositionsTable() {
   const table = useReactTable({
     data,
     columns,
+    state: { columnVisibility },
+    onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -76,88 +71,40 @@ export function PositionsTable() {
   })
 
   return (
-    <div className='flex flex-1 flex-col gap-4'>
-      <div className='flex flex-wrap items-center gap-2'>
-        <Select
-          value={departmentFilter}
-          onValueChange={(value) => setDepartmentFilter(value)}
-        >
-          <SelectTrigger className='w-[220px]'>
-            <SelectValue placeholder={t('position:departmentFilter')} />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value='all'>{t('position:departmentAll')}</SelectItem>
-            <SelectItem value='global'>
-              {t('position:departmentGlobal')}
-            </SelectItem>
-            {departments.map((dept) => (
-              <SelectItem key={dept.id} value={dept.id}>
-                {dept.deptName}
+    <DataTablePage
+      table={table}
+      isLoading={isLoading}
+      isFetching={isFetching}
+      onRefresh={() => void refetch()}
+      emptyMessage={t('position:noPositions')}
+      filters={
+        <>
+          <Select
+            value={departmentFilter}
+            onValueChange={(value) => setDepartmentFilter(value)}
+          >
+            <SelectTrigger className='h-8 w-55'>
+              <SelectValue placeholder={t('position:departmentFilter')} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value='all'>{t('position:departmentAll')}</SelectItem>
+              <SelectItem value='global'>
+                {t('position:departmentGlobal')}
               </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <DataTableToolbar
-          table={table}
-          searchKey='positionName'
-          searchPlaceholder={t('position:filter')}
-        />
-      </div>
-      <div className='overflow-hidden rounded-md border'>
-        <Table>
-          <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {isLoading ? (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className='h-24 text-center'
-                >
-                  {t('common:loading')}
-                </TableCell>
-              </TableRow>
-            ) : table.getRowModel().rows.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className='h-24 text-center'
-                >
-                  {t('position:noPositions')}
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-      <DataTablePagination table={table} />
-    </div>
+              {departments.map((dept) => (
+                <SelectItem key={dept.id} value={dept.id}>
+                  {dept.deptName}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <DataTableToolbar
+            table={table}
+            searchKey='positionName'
+            searchPlaceholder={t('position:filter')}
+          />
+        </>
+      }
+    />
   )
 }

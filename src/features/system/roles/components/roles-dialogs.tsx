@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { permissionsApi, rolesApi } from '@/api/system'
 import { ApiError } from '@/lib/http/api-error'
 import { Button } from '@/components/ui/button'
+import { LoadingButton } from '@/components/ui/loading-button'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   Dialog,
@@ -291,9 +292,9 @@ export function RolesDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={createMutation.isPending}>
+                <LoadingButton type='submit' loading={createMutation.isPending}>
                   {t('common:create')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -374,9 +375,9 @@ export function RolesDialogs() {
                 )}
               />
               <DialogFooter>
-                <Button type='submit' disabled={updateMutation.isPending}>
+                <LoadingButton type='submit' loading={updateMutation.isPending}>
                   {t('common:save')}
-                </Button>
+                </LoadingButton>
               </DialogFooter>
             </form>
           </Form>
@@ -420,12 +421,12 @@ export function RolesDialogs() {
             ))}
           </ScrollArea>
           <DialogFooter>
-            <Button
+            <LoadingButton
               onClick={() => assignMutation.mutate()}
-              disabled={assignMutation.isPending}
+              loading={assignMutation.isPending}
             >
               {t('system:roles.dialogs.savePermissions')}
-            </Button>
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -444,13 +445,13 @@ export function RolesDialogs() {
             <Button variant='outline' onClick={() => setOpen(null)}>
               {t('common:cancel')}
             </Button>
-            <Button
+            <LoadingButton
               variant='destructive'
               onClick={() => deleteMutation.mutate()}
-              disabled={deleteMutation.isPending}
+              loading={deleteMutation.isPending}
             >
               {t('common:delete')}
-            </Button>
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

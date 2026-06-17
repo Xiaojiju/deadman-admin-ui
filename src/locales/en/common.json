@@ -4,6 +4,7 @@
   "searchPlaceholder": "Type a command or search...",
   "noResults": "No results found.",
   "loading": "Loading...",
+  "refresh": "Refresh",
   "reset": "Reset",
   "cancel": "Cancel",
   "save": "Save",

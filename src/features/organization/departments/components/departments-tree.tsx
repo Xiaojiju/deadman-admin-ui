@@ -1,12 +1,14 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { type DepartmentTreeVO } from '@/types/api'
-import { ChevronDown, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronRight, RefreshCw } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { departmentsApi } from '@/api/departments'
+import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { LoadingIndicator } from '@/components/ui/loading-indicator'
 import {
   Table,
   TableBody,
@@ -123,10 +125,12 @@ export function DepartmentsTree() {
   const { t } = useTranslation(['department', 'common'])
   const [keyword, setKeyword] = useState('')
 
-  const { data = [], isLoading } = useQuery({
+  const { data = [], isLoading, isFetching, refetch } = useQuery({
     queryKey: ['departments', 'tree'],
     queryFn: () => departmentsApi.tree(),
   })
+
+  const loading = isLoading || isFetching
 
   const filtered = useMemo(() => filterTree(data, keyword), [data, keyword])
 
@@ -150,13 +154,37 @@ export function DepartmentsTree() {
 
   return (
     <div className='flex flex-1 flex-col gap-4'>
-      <Input
-        className='max-w-sm'
-        placeholder={t('department:filter')}
-        value={keyword}
-        onChange={(e) => setKeyword(e.target.value)}
-      />
-      <div className='overflow-hidden rounded-md border'>
+      <div className='flex flex-col gap-2 sm:flex-row sm:items-center'>
+        <div className='flex flex-1 flex-wrap items-center gap-2'>
+          <Input
+            className='h-8 max-w-sm'
+            placeholder={t('department:filter')}
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+          />
+        </div>
+        <div className='flex shrink-0 items-center gap-2'>
+          <Button
+            type='button'
+            variant='outline'
+            size='sm'
+            className='h-8 gap-2'
+            onClick={() => void refetch()}
+            disabled={isFetching}
+          >
+            <RefreshCw
+              className={cn('size-4', isFetching && 'animate-spin')}
+            />
+            {t('common:refresh')}
+          </Button>
+        </div>
+      </div>
+      <div className='relative overflow-hidden rounded-md border'>
+        {loading ? (
+          <div className='absolute inset-0 z-10 flex items-center justify-center bg-background/70 backdrop-blur-[1px]'>
+            <LoadingIndicator />
+          </div>
+        ) : null}
         <Table>
           <TableHeader>
             <TableRow>
@@ -172,13 +200,7 @@ export function DepartmentsTree() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {isLoading ? (
-              <TableRow>
-                <TableCell colSpan={5} className='h-24 text-center'>
-                  {t('common:loading')}
-                </TableCell>
-              </TableRow>
-            ) : filtered.length ? (
+            {filtered.length ? (
               filtered.map((node) => (
                 <TreeNode
                   key={node.id}
@@ -190,8 +212,17 @@ export function DepartmentsTree() {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5} className='h-24 text-center'>
-                  {t('department:noDepartments')}
+                <TableCell
+                  colSpan={5}
+                  className='h-24 text-center text-muted-foreground'
+                >
+                  {loading ? (
+                    <div className='flex justify-center'>
+                      <LoadingIndicator />
+                    </div>
+                  ) : (
+                    t('department:noDepartments')
+                  )}
                 </TableCell>
               </TableRow>
             )}

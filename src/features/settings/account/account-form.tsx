@@ -13,6 +13,7 @@ import { useAuthStore } from '@/stores/auth-store'
 import { resolveFileAccessUrl } from '@/lib/files/resolve-file-url'
 import { ApiError } from '@/lib/http/api-error'
 import { PERMISSIONS } from '@/constants/permissions'
+import { LoadingCenter } from '@/components/ui/loading-indicator'
 import { usePermission } from '@/hooks/use-permission'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
@@ -194,12 +195,7 @@ export function AccountForm() {
   const isSubmitting = form.formState.isSubmitting || updateMutation.isPending
 
   if (isLoading) {
-    return (
-      <div className='flex items-center gap-2 text-muted-foreground'>
-        <Loader2 className='size-4 animate-spin' />
-        {t('account.loading')}
-      </div>
-    )
+    return <LoadingCenter />
   }
 
   if (isError || !profile) {

@@ -10,11 +10,12 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { LoadingCenter } from '@/components/ui/loading-indicator'
 import { Main } from '@/components/layout/main'
 import { PageLayout } from '@/components/layout/page-layout'
 
 export function Permissions() {
-  const { t } = useTranslation(['system', 'common'])
+  const { t } = useTranslation('system')
 
   const { data: catalog = [], isLoading: catalogLoading } = useQuery({
     queryKey: ['permissions', 'catalog'],
@@ -50,7 +51,7 @@ export function Permissions() {
 
           <TabsContent value='catalog' className='space-y-4'>
             {catalogLoading ? (
-              <p className='text-muted-foreground'>{t('common:loading')}</p>
+              <LoadingCenter />
             ) : (
               catalog.map((group) => (
                 <Card key={group.code}>
@@ -79,7 +80,7 @@ export function Permissions() {
 
           <TabsContent value='flat'>
             {flatLoading ? (
-              <p className='text-muted-foreground'>{t('common:loading')}</p>
+              <LoadingCenter />
             ) : (
               <Card>
                 <CardContent className='flex flex-wrap gap-2 pt-6'>

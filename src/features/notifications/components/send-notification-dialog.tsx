@@ -18,6 +18,7 @@ import { NOTIFICATION_QUERY_KEYS } from '@/constants/notification-query-keys'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { LoadingCenter } from '@/components/ui/loading-indicator'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
   Command,
@@ -455,9 +456,11 @@ export function SendNotificationDialog({
                           />
                           <CommandList className='max-h-80'>
                             <CommandEmpty>
-                              {usersLoading
-                                ? t('common:loading')
-                                : t('common:noResults')}
+                              {usersLoading ? (
+                                <LoadingCenter wrapperClassName='py-6' />
+                              ) : (
+                                t('common:noResults')
+                              )}
                             </CommandEmpty>
                             <CommandGroup>
                               {(usersData?.records ?? []).map((user) => (

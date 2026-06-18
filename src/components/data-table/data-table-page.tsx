@@ -1,8 +1,9 @@
 import { flexRender, type Table as ReactTable } from '@tanstack/react-table'
-import { Loader2, RefreshCw } from 'lucide-react'
+import { RefreshCw } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
+import { LoadingIndicator } from '@/components/ui/loading-indicator'
 import {
   Table,
   TableBody,
@@ -71,7 +72,7 @@ export function DataTablePage<TData>({
       <div className='relative overflow-hidden rounded-md border'>
         {loading ? (
           <div className='absolute inset-0 z-10 flex items-center justify-center bg-background/70 backdrop-blur-[1px]'>
-            <Loader2 className='size-6 animate-spin text-muted-foreground' />
+            <LoadingIndicator />
           </div>
         ) : null}
         <Table>
@@ -111,7 +112,13 @@ export function DataTablePage<TData>({
                   colSpan={columnCount}
                   className='h-24 text-center text-muted-foreground'
                 >
-                  {loading ? t('loading') : emptyMessage}
+                  {loading ? (
+                    <div className='flex justify-center'>
+                      <LoadingIndicator />
+                    </div>
+                  ) : (
+                    emptyMessage
+                  )}
                 </TableCell>
               </TableRow>
             )}
